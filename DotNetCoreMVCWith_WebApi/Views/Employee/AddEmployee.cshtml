@@ -1,0 +1,89 @@
+﻿@model DotNetCoreMVCWith_WebApi.Models.Employee
+@{
+    ViewData["Title"] = "AddEmployee";
+}
+
+<h2>Employee Registration form</h2>
+<form id="AddEmployeeForm" >
+    <div class="form-group">
+        <label asp-for="FirstName" class="control-label"></label>
+        <input asp-for="FirstName" class="form-control form-control-sm" style="width:40%" />
+        @*<span asp-validation-for="FirstName" class="text-danger"></span>*@
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName" class="control-label"></label>
+        <input asp-for="LastName" class="form-control form-control-sm" style="width:40%" />
+        @*<span asp-validation-for="LastName" class="text-danger"></span>*@
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" type="email" class="form-control form-control-sm" style="width:40%" />
+        @*<span asp-validation-for="Email" class="text-danger"></span>*@  
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Department" class="control-label"></label>
+        <input asp-for="Department" class="form-control form-control-sm" style="width:40%" />
+        @*<span asp-validation-for="Department" class="text-danger"></span>*@
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HireDate" class="control-label"></label>
+        <input asp-for="HireDate" type="date" class="form-control form-control-sm" style="width:40%" />
+        @*<span asp-validation-for="HireDate" class="text-danger"></span>*@
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Salary" class="control-label"></label>
+        <input asp-for="Salary" class="form-control form-control-sm" name="Salary" style="width:40%" />
+        @*<span asp-validation-for="Salary" class="textdanger"></span>*@
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-secondary">Cancel</button>
+
+</form>
+
+<script>
+    //$.validator.setDefaults({
+    //    ignore: []
+    //});
+    //console.log("jQuery Loaded:", !!window.jQuery);
+    //console.log("Validation Loaded:", typeof $.fn.validate !== "undefined");
+    $.validator.addMethod("salaryRange",function(value,element){
+        return this.optional(element) || /^\d+(\.\d{1,2})?$/.test(value);
+    }, "Enter a valid salary (numbers and up to 2 decimal places only)");
+
+    $(document).ready(function(){
+        $("#AddEmployeeForm").validate({
+            rules:{
+                Salary:{
+                        required : true,
+                        /*number:true,*/
+                        minlength: 2,
+                        salaryRange : true
+                    }
+                },
+            messages:{
+                    Salary: {
+                        required: "Salary is required",
+                        /*number: "only Enter numbers",*/
+                        minlength: "At least 2 characters",
+                        salaryRange: "Enter a valid salary (numbers and up to 2 decimal places only)"
+                    }
+                },
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+                error.css("color", "red");
+            }
+        });
+    });
+</script>
+@*<style type="text/css">
+    .textdanger {
+    color: red !important;
+    font-weight: bold;
+    font-size: 14px;
+    }
+</style>*@
+

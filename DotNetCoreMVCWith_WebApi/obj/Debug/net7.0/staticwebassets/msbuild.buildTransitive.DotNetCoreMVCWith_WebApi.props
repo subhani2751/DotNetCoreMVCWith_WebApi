@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\DotNetCoreMVCWith_WebApi.props" />
+</Project>
