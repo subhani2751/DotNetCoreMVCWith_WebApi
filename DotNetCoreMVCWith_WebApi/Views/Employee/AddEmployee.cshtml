@@ -3,8 +3,9 @@
     ViewData["Title"] = "AddEmployee";
 }
 
-<h2>Employee Registration form</h2>
-<form id="AddEmployeeForm" >
+
+<form id="AddEmployeeForm">
+    <h2>Employee Registration form</h2>
     <div class="form-group">
         <label asp-for="FirstName" class="control-label"></label>
         <input asp-for="FirstName" class="form-control form-control-sm" style="width:40%" />
@@ -19,7 +20,7 @@
     <div class="form-group">
         <label asp-for="Email" class="control-label"></label>
         <input asp-for="Email" type="email" class="form-control form-control-sm" style="width:40%" />
-        @*<span asp-validation-for="Email" class="text-danger"></span>*@  
+        @*<span asp-validation-for="Email" class="text-danger"></span>*@
     </div>
 
     <div class="form-group">
@@ -39,51 +40,189 @@
         <input asp-for="Salary" class="form-control form-control-sm" name="Salary" style="width:40%" />
         @*<span asp-validation-for="Salary" class="textdanger"></span>*@
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-    <button type="submit" class="btn btn-secondary">Cancel</button>
+    <button type="submit" value="Save" class="btn btn-primary">Save</button>
+    <button type="submit" value="Cancel" class="btn btn-secondary">Cancel</button>
 
 </form>
-
-<script>
+<table class="table table-bordered mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th>Employee ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Hire Date</th>
+            <th>Salary</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="employeeTableBody">
+        <!-- Data will be inserted here dynamically -->
+    </tbody>
+</table>
+<script src="~/scripts/validationformates.js"></script>
+<script type="text/javascript">
+    let actionType = "";
     //$.validator.setDefaults({
     //    ignore: []
     //});
     //console.log("jQuery Loaded:", !!window.jQuery);
     //console.log("Validation Loaded:", typeof $.fn.validate !== "undefined");
-    $.validator.addMethod("salaryRange",function(value,element){
-        return this.optional(element) || /^\d+(\.\d{1,2})?$/.test(value);
-    }, "Enter a valid salary (numbers and up to 2 decimal places only)");
-
-    $(document).ready(function(){
+    $("button[type=submit]").click(function () {
+        actionType = $(this).val(); // Get button value (save or cancel)
+    });
+    $(document).ready(function () {
         $("#AddEmployeeForm").validate({
-            rules:{
-                Salary:{
-                        required : true,
-                        /*number:true,*/
-                        minlength: 2,
-                        salaryRange : true
-                    }
+            rules: {
+                FirstName: {
+                    required: true,
+                    AlphabelsFormate: true
                 },
-            messages:{
-                    Salary: {
-                        required: "Salary is required",
-                        /*number: "only Enter numbers",*/
-                        minlength: "At least 2 characters",
-                        salaryRange: "Enter a valid salary (numbers and up to 2 decimal places only)"
-                    }
+                LastName: {
+                    required: true,
+                    AlphabelsFormate: true
                 },
+                Email: {
+                    required: true,
+                    EmailFormate: true
+                },
+                Department: {
+                    required: true,
+                    AlphabelsFormate: true
+                },
+                HireDate: {
+                    required: true
+                },
+                Salary: {
+                    required: true,
+                    /*number:true,*/
+                    minlength: 2,
+                    salaryRange: true
+                }
+            },
+            messages: {
+                FirstName: {
+                    required: "First name is required.",
+                    AlphabelsFormate: "Accepts only alphabets.."
+                },
+                LastName: {
+                    required: "last name is required..",
+                    AlphabelsFormate: "Accepts only alphabets.."
+                },
+                Email: {
+                    required: "Email is required..",
+                    EmailFormate: "Enter a valid Email only"
+                },
+                Department: {
+                    required: "Department is required..",
+                    AlphabelsFormate: "Accepts only alphabets.."
+                },
+                HireDate: {
+                    required: "Hire date is required.."
+                },
+                Salary: {
+                    required: "Salary is required",
+                    /*number: "only Enter numbers",*/
+                    minlength: "At least 2 characters",
+                    salaryRange: "Enter a valid salary (numbers and up to 2 decimal places only)"
+                }
+            },
             errorPlacement: function (error, element) {
                 error.insertAfter(element);
                 error.css("color", "red");
+            },
+            submitHandler: function (form) 
+              {
+                if (actionType === "Save") {
+                    var Formdata = {
+                        FirstName: $("#FirstName").val(),
+                        LastName: $("#LastName").val(),
+                        Email: $("#Email").val(),
+                        Department: $("#Department").val(),
+                        HireDate: $("#HireDate").val(),
+                        Salary: $("#Salary").val(),
+                    };
+                    $.ajax({
+                        url: 'https://localhost:44389/api/ApiEmployee',
+                        type: 'post',
+                        contentType: 'application/json',
+                        data: JSON.stringify(Formdata),
+                        success: function (response) {
+                            form.reset();
+                            alert("Employee saved successfully!");
+                        },
+                        error: function (e) {
+                            alert('Error ' + e.responseText);
+                        }
+                    });
+                }
+                else if (actionType == "Cancel") {
+                    form.reset();
+                }
             }
         });
-    });
+
+        $.ajax({
+            url: "https://localhost:44389/api/ApiEmployee/GetAllEmployees",
+            type : "get",
+            contentType : "application/json",
+            success: function (Result) {
+                var tableBody = $("#employeeTableBody");
+                $.each(Result, function (index, emp) {
+                    var row = `<tr>
+                                <td>${emp.employeeId}</td>
+                                <td>${emp.firstName}</td>
+                                <td>${emp.lastName}</td>
+                                <td>${emp.email}</td>
+                                <td>${emp.department}</td>
+                                <td>${emp.hireDate ? emp.hireDate.split("T")[0] : ""}</td>
+                                <td>${emp.salary}</td>
+                                <td>
+                                    <button class="btn btn-success btn-sm Edit" data-id="${emp.employeeId}">Edit</button>
+                                    <button class="btn btn-danger btn-sm deleteRow" data-id="${emp.employeeId}">Delete</button>
+                                </td>
+                            </tr>`;
+                    tableBody.append(row);
+                });
+                /*alert("data came successfully!" + Result);*/
+            },
+            error:function(E){
+                alert("data hadn't came !"+E);
+            }
+        });
+
+        $(document).on("click", ".Edit", function () {
+            var Empid = $(this).data("id");
+            // var row = $("#row_" + Empid);
+            // var EditObj = {
+            //     EmployeeId: Empid,
+            //     FirstName: row.find(".FirstName").val(),
+            //     LastName: row.find(".LastName").val(),
+            //     Email: row.find(".Email").val(),
+            //     Department: row.find(".Department").val(),
+            //     HireDate: row.find(".HireDate").val(),
+            //     Salary: parseFloat(row.find(".Salary").val())
+            // };
+            // $.ajax({
+            //     url: "https://localhost:44389/Employee/EditEmployee?id=" + Empid,
+            //     type: "put",
+            //     contentType: "application/json",
+            //     success: function(result){
+            //         alert("updated success fully");
+            //     },
+            //     error: function (Er) {
+            //         alert("updated success fully");
+            //     } 
+            // });
+            window.location.href = "https://localhost:44389/Employee/EditEmployee/" + Empid;
+        });
+     });
 </script>
-@*<style type="text/css">
-    .textdanger {
-    color: red !important;
-    font-weight: bold;
-    font-size: 14px;
+<style type="text/css">
+    .Form-Center {
+        display: flex;
+        justify-content: space-around;
     }
-</style>*@
+</style>
 

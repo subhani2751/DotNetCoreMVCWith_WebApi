@@ -1,7 +1,170 @@
-﻿
+﻿@model DotNetCoreMVCWith_WebApi.Models.Employee
+
 @{
     ViewData["Title"] = "EditEmployee";
 }
 
-<h1>EditEmployee</h1>
+<form id="EditEmployee">
+    <h3>Edit Employee</h3>
+    <div class="form-group">
+        <input asp-for="EmployeeId" type="hidden" class="form-control form-control-sm" style="width:40%" />
+        <input asp-for="CreatedDate" type="hidden" class="form-control form-control-sm" style="width:40%" />
+    </div>
+    <div class="form-group">
+        <label asp-for="FirstName" class="control-label"></label>
+        <input asp-for="FirstName" class="form-control form-control-sm" style="width:40%" />
+        @*<span asp-validation-for="FirstName" class="text-danger"></span>*@
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName" class="control-label"></label>
+        <input asp-for="LastName" class="form-control form-control-sm" style="width:40%" />
+        @*<span asp-validation-for="LastName" class="text-danger"></span>*@
+    </div>
 
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" type="email" class="form-control form-control-sm" style="width:40%" />
+        @*<span asp-validation-for="Email" class="text-danger"></span>*@
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Department" class="control-label"></label>
+        <input asp-for="Department" class="form-control form-control-sm" style="width:40%" />
+        @*<span asp-validation-for="Department" class="text-danger"></span>*@
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HireDate" class="control-label"></label>
+        <input asp-for="HireDate" type="date" class="form-control form-control-sm" style="width:40%" />
+        @*<span asp-validation-for="HireDate" class="text-danger"></span>*@
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Salary" class="control-label"></label>
+        <input asp-for="Salary" class="form-control form-control-sm" name="Salary" style="width:40%" />
+        @*<span asp-validation-for="Salary" class="textdanger"></span>*@
+    </div>
+    <button type="submit" value="Update" class="btn btn-primary">Update</button>
+    <button type="submit" value="Cancel" class="btn btn-secondary">Cancel</button>
+</form>
+
+<script src="~/scripts/validationformates.js"></script>
+
+<script type="text/javascript">
+    let Actiontype = '';
+    debugger;
+    try {
+        function clearForm() {
+            $("#EditEmployee input").val(""); // Clear all visible input fields
+            $("#EditEmployee input[type='date']").val(""); // Ensure date fields are cleared
+        }
+        $("button[type=submit]").click(function () {
+            /*event.preventDefault();  */
+            Actiontype = $(this).val();
+            // if (Actiontype == "Cancel") {
+            //     debugger;
+            //     //$("#EditEmployee")[0].reset();
+            //     clearForm();
+            // }
+        });
+        $(document).ready(function () {
+            $("#EditEmployee").validate({
+                rules: {
+                    FirstName: {
+                        required: true,
+                        AlphabelsFormate: true
+                    },
+                    LastName: {
+                        required: true,
+                        AlphabelsFormate: true
+                    },
+                    Email: {
+                        required: true,
+                        EmailFormate: true
+                    },
+                    Department: {
+                        required: true,
+                        AlphabelsFormate: true
+                    },
+                    HireDate: {
+                        required: true
+                    },
+                    Salary: {
+                        required: true,
+                        /*number:true,*/
+                        minlength: 2,
+                        salaryRange: true
+                    }
+                },
+                messages: {
+                    FirstName: {
+                        required: "First name is required.",
+                        AlphabelsFormate: "Accepts only alphabets.."
+                    },
+                    LastName: {
+                        required: "last name is required..",
+                        AlphabelsFormate: "Accepts only alphabets.."
+                    },
+                    Email: {
+                        required: "Email is required..",
+                        EmailFormate: "Enter a valid Email only"
+                    },
+                    Department: {
+                        required: "Department is required..",
+                        AlphabelsFormate: "Accepts only alphabets.."
+                    },
+                    HireDate: {
+                        required: "Hire date is required.."
+                    },
+                    Salary: {
+                        required: "Salary is required",
+                        /*number: "only Enter numbers",*/
+                        minlength: "At least 2 characters",
+                        salaryRange: "Enter a valid salary (numbers and up to 2 decimal places only)"
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    error.insertAfter(element);
+                    error.css("color", "red");
+                },
+                submitHandler: function (form) {
+                    if (Actiontype === "Update") {
+                        var Empid = $(this).data("id");
+                        var _CreatedDate = $("#CreatedDate").val() == '' ? null : $("#CreatedDate").val()
+                        var Formdata = {
+                            EmployeeId: $("#EmployeeId").val(),
+                            FirstName: $("#FirstName").val(),
+                            LastName: $("#LastName").val(),
+                            Email: $("#Email").val(),
+                            Department: $("#Department").val(),
+                            HireDate: $("#HireDate").val(),
+                            Salary: $("#Salary").val(),
+                            CreatedDate: _CreatedDate,
+                        };
+                        $.ajax({
+                            url: 'https://localhost:44389/api/ApiEmployee/Update',
+                            type: 'put',
+                            contentType: 'application/json',
+                            data: JSON.stringify(Formdata),
+                            success: function (response) {
+                                clearForm();
+                                window.location.href = "https://localhost:44389/Employee/AddEmployee";
+                            },
+                            error: function (e) {
+                                alert('Error ' + e.responseText);
+                            }
+                        });
+                    }
+                    else if (Actiontype == "Cancel") {
+                        debugger;
+                        clearForm();
+                        //$("#EditEmployee")[0].reset();
+                        /*form.reset();*/
+                    }
+                }
+            });
+        });
+    } catch (er) {
+        console.log(er)
+    }
+</script>
