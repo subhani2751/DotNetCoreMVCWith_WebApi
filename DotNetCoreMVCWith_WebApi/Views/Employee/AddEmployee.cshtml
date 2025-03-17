@@ -195,15 +195,6 @@
         $(document).on("click", ".Edit", function () {
             var Empid = $(this).data("id");
             // var row = $("#row_" + Empid);
-            // var EditObj = {
-            //     EmployeeId: Empid,
-            //     FirstName: row.find(".FirstName").val(),
-            //     LastName: row.find(".LastName").val(),
-            //     Email: row.find(".Email").val(),
-            //     Department: row.find(".Department").val(),
-            //     HireDate: row.find(".HireDate").val(),
-            //     Salary: parseFloat(row.find(".Salary").val())
-            // };
             // $.ajax({
             //     url: "https://localhost:44389/Employee/EditEmployee?id=" + Empid,
             //     type: "put",
@@ -216,6 +207,24 @@
             //     } 
             // });
             window.location.href = "https://localhost:44389/Employee/EditEmployee/" + Empid;
+        });
+        $(document).on("click", ".deleteRow", function () {
+            var Empid = $(this).data("id");
+             var row = $("#row_" + Empid);
+            $.ajax({
+                url: "https://localhost:44389/api/ApiEmployee/Delete?id=" + Empid,
+                type: "put",
+                contentType: "application/json",
+                success: function(result){
+                    debugger;
+                    row.remove();
+                    alert("Employee Deleted");
+                },
+                error: function (Er) {
+                    alert("Employee not Deleted");
+                }
+            });
+            //window.location.href = "https://localhost:44389/Employee/EditEmployee/" + Empid;
         });
      });
 </script>

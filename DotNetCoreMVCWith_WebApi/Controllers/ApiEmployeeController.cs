@@ -51,5 +51,13 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
             var _Employees = await _employeeDbContext.SaveChangesAsync();
             return Ok(new { Message = "Employee Details modified successfully" });
         }
+        [HttpPut("Delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var EmployeeDS = await _employeeDbContext.Employees.FirstOrDefaultAsync(x => x.EmployeeId == id);
+            _employeeDbContext.Remove(EmployeeDS);
+            var _Employees = await _employeeDbContext.SaveChangesAsync();
+            return Ok(new { Message = "Employee Deleted successfully" });
+        }
     }
 }
