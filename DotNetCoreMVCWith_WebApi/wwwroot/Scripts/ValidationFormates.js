@@ -9,3 +9,8 @@ $.validator.addMethod("EmailFormate", function (value, element) {
 $.validator.addMethod("AlphabelsFormate", function (value, element) {
     return this.optional(element) || new RegExp("^[a-zA-Z\\s]+$").test(value);
 }, "Accepts only alphabets and spaces");
+
+
+function Ajaxcall() {
+
+}

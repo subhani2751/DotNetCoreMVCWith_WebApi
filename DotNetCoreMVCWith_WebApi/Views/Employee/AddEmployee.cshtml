@@ -45,7 +45,7 @@
 
 </form>
 <table class="table table-bordered mt-3">
-    <thead class="table-dark">
+    <thead id="employeeTableHead" class="table-dark">
         <tr>
             <th>Employee ID</th>
             <th>First Name</th>
@@ -71,6 +71,9 @@
     //console.log("Validation Loaded:", typeof $.fn.validate !== "undefined");
     $("button[type=submit]").click(function () {
         actionType = $(this).val(); // Get button value (save or cancel)
+        //if(actionType=="Cancel"){
+            
+        //}
     });
     $(document).ready(function () {
         $("#AddEmployeeForm").validate({
@@ -150,6 +153,7 @@
                         data: JSON.stringify(Formdata),
                         success: function (response) {
                             form.reset();
+                            listEmployees();
                             alert("Employee saved successfully!");
                         },
                         error: function (e) {
@@ -162,71 +166,75 @@
                 }
             }
         });
+        listEmployees();
+       
+     });
 
+     function listEmployees(){
         $.ajax({
             url: "https://localhost:44389/api/ApiEmployee/GetAllEmployees",
-            type : "get",
-            contentType : "application/json",
+            type: "get",
+            contentType: "application/json",
             success: function (Result) {
                 var tableBody = $("#employeeTableBody");
                 $.each(Result, function (index, emp) {
-                    var row = `<tr>
-                                <td>${emp.employeeId}</td>
-                                <td>${emp.firstName}</td>
-                                <td>${emp.lastName}</td>
-                                <td>${emp.email}</td>
-                                <td>${emp.department}</td>
-                                <td>${emp.hireDate ? emp.hireDate.split("T")[0] : ""}</td>
-                                <td>${emp.salary}</td>
-                                <td>
-                                    <button class="btn btn-success btn-sm Edit" data-id="${emp.employeeId}">Edit</button>
-                                    <button class="btn btn-danger btn-sm deleteRow" data-id="${emp.employeeId}">Delete</button>
-                                </td>
-                            </tr>`;
+                    var row = `<tr id="row_${emp.employeeId}">
+                                    <td>${emp.employeeId}</td>
+                                    <td>${emp.firstName}</td>
+                                    <td>${emp.lastName}</td>
+                                    <td>${emp.email}</td>
+                                    <td>${emp.department}</td>
+                                    <td>${emp.hireDate ? emp.hireDate.split("T")[0] : ""}</td>
+                                    <td>${emp.salary}</td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm Edit" data-id="${emp.employeeId}">Edit</button>
+                                        <button class="btn btn-danger btn-sm deleteRow" data-id="${emp.employeeId}">Delete</button>
+                                    </td>
+                                </tr>`;
                     tableBody.append(row);
                 });
                 /*alert("data came successfully!" + Result);*/
             },
-            error:function(E){
-                alert("data hadn't came !"+E);
+            error: function (E) {
+                alert("data hadn't came !" + E);
             }
         });
-
-        $(document).on("click", ".Edit", function () {
-            var Empid = $(this).data("id");
-            // var row = $("#row_" + Empid);
-            // $.ajax({
-            //     url: "https://localhost:44389/Employee/EditEmployee?id=" + Empid,
-            //     type: "put",
-            //     contentType: "application/json",
-            //     success: function(result){
-            //         alert("updated success fully");
-            //     },
-            //     error: function (Er) {
-            //         alert("updated success fully");
-            //     } 
-            // });
-            window.location.href = "https://localhost:44389/Employee/EditEmployee/" + Empid;
-        });
-        $(document).on("click", ".deleteRow", function () {
-            var Empid = $(this).data("id");
-             var row = $("#row_" + Empid);
-            $.ajax({
-                url: "https://localhost:44389/api/ApiEmployee/Delete?id=" + Empid,
-                type: "put",
-                contentType: "application/json",
-                success: function(result){
-                    debugger;
-                    row.remove();
-                    alert("Employee Deleted");
-                },
-                error: function (Er) {
-                    alert("Employee not Deleted");
-                }
+     };
+          $(document).on("click", ".Edit", function () {
+                var Empid = $(this).data("id");
+                // var row = $("#row_" + Empid);
+                // $.ajax({
+                //     url: "https://localhost:44389/Employee/EditEmployee?id=" + Empid,
+                //     type: "put",
+                //     contentType: "application/json",
+                //     success: function(result){
+                //         alert("updated success fully");
+                //     },
+                //     error: function (Er) {
+                //         alert("updated success fully");
+                //     }
+                // });
+                window.location.href = "https://localhost:44389/Employee/EditEmployee/" + Empid;
             });
-            //window.location.href = "https://localhost:44389/Employee/EditEmployee/" + Empid;
-        });
-     });
+            $(document).on("click", ".deleteRow", function () {
+                var Empid = $(this).data("id");
+                 var row = $("#row_" + Empid);
+                console.log(row);
+                $.ajax({
+                    url: "https://localhost:44389/api/ApiEmployee/Delete?id=" + Empid,
+                    type: "put",
+                    contentType: "application/json",
+                    data : "",
+                    success: function(result){
+                        row.remove();
+                        alert("Employee Deleted");
+                    },
+                    error: function (Er) {
+                        alert("Employee not Deleted");
+                    }
+                });
+                //window.location.href = "https://localhost:44389/Employee/EditEmployee/" + Empid;
+            });
 </script>
 <style type="text/css">
     .Form-Center {
