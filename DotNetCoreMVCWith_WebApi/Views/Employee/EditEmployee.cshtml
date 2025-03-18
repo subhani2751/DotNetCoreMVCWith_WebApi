@@ -3,56 +3,19 @@
 @{
     ViewData["Title"] = "EditEmployee";
 }
-
-<form id="EditEmployee">
-    <h3>Edit Employee</h3>
-    <div class="form-group">
-        <input asp-for="EmployeeId" type="hidden" class="form-control form-control-sm" style="width:40%" />
-        <input asp-for="CreatedDate" type="hidden" class="form-control form-control-sm" style="width:40%" />
-    </div>
-    <div class="form-group">
-        <label asp-for="FirstName" class="control-label"></label>
-        <input asp-for="FirstName" class="form-control form-control-sm" style="width:40%" />
-        @*<span asp-validation-for="FirstName" class="text-danger"></span>*@
-    </div>
-    <div class="form-group">
-        <label asp-for="LastName" class="control-label"></label>
-        <input asp-for="LastName" class="form-control form-control-sm" style="width:40%" />
-        @*<span asp-validation-for="LastName" class="text-danger"></span>*@
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Email" class="control-label"></label>
-        <input asp-for="Email" type="email" class="form-control form-control-sm" style="width:40%" />
-        @*<span asp-validation-for="Email" class="text-danger"></span>*@
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Department" class="control-label"></label>
-        <input asp-for="Department" class="form-control form-control-sm" style="width:40%" />
-        @*<span asp-validation-for="Department" class="text-danger"></span>*@
-    </div>
-
-    <div class="form-group">
-        <label asp-for="HireDate" class="control-label"></label>
-        <input asp-for="HireDate" type="date" class="form-control form-control-sm" style="width:40%" />
-        @*<span asp-validation-for="HireDate" class="text-danger"></span>*@
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Salary" class="control-label"></label>
-        <input asp-for="Salary" class="form-control form-control-sm" name="Salary" style="width:40%" />
-        @*<span asp-validation-for="Salary" class="textdanger"></span>*@
-    </div>
-    <button type="submit" value="Update" class="btn btn-primary">Update</button>
-    <button type="submit" value="Cancel" class="btn btn-secondary">Cancel</button>
-</form>
+<div class="container p-4 bg-light rounded shadow mb-5">
+    <form id="EditEmployee">
+        <h3>Edit Employee</h3>
+        @await Html.PartialAsync("_FormFields")
+        <button type="submit" value="Update" class="btn btn-primary">Update</button>
+        <button type="submit" value="Cancel" class="btn btn-secondary">Cancel</button>
+    </form>
+</div>
 
 <script src="~/scripts/validationformates.js"></script>
 
 <script type="text/javascript">
     let Actiontype = '';
-    debugger;
     try {
         function clearForm() {
             $("#EditEmployee input").val(""); // Clear all visible input fields
@@ -129,8 +92,7 @@
                 },
                 submitHandler: function (form) {
                     if (Actiontype === "Update") {
-                        var Empid = $(this).data("id");
-                        var _CreatedDate = $("#CreatedDate").val() == '' ? null : $("#CreatedDate").val()
+                        var _CreatedDate = $("#CreatedDate").val() == '' ? null : $("#CreatedDate").val();
                         var Formdata = {
                             EmployeeId: $("#EmployeeId").val(),
                             FirstName: $("#FirstName").val(),
@@ -156,8 +118,8 @@
                         });
                     }
                     else if (Actiontype == "Cancel") {
-                        debugger;
                         clearForm();
+                         window.location.href = "https://localhost:44389/Employee/AddEmployee";
                         //$("#EditEmployee")[0].reset();
                         /*form.reset();*/
                     }
@@ -168,3 +130,18 @@
         console.log(er)
     }
 </script>
+<style type="text/css">
+    .container {
+        max-width: 1200px;
+    }
+
+    /* Add space between form and table section */
+    .mb-5 {
+        margin-bottom: 3rem !important;
+    }
+
+    .shadow {
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+</style>

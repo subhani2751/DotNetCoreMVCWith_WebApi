@@ -4,71 +4,38 @@
 }
 
 <div class="container p-4 bg-light rounded shadow mb-5">
-<form id="AddEmployeeForm">
-    <h2>Employee Registration form</h2>
-    <div class="form-group">
-        <label asp-for="FirstName" class="control-label"></label>
-        <input asp-for="FirstName" class="form-control form-control-sm" style="width:40%" />
-        @*<span asp-validation-for="FirstName" class="text-danger"></span>*@
-    </div>
-    <div class="form-group">
-        <label asp-for="LastName" class="control-label"></label>
-        <input asp-for="LastName" class="form-control form-control-sm" style="width:40%" />
-        @*<span asp-validation-for="LastName" class="text-danger"></span>*@
-    </div>
+    <form id="AddEmployeeForm">
+        <h2>Employee Registration form</h2>
+            @await Html.PartialAsync("_FormFields")
+            <button type="submit" value="Save" class="btn btn-primary">Save</button>
+        <button type="submit" value="Cancel" class="btn btn-secondary">Cancel</button>
 
-    <div class="form-group">
-        <label asp-for="Email" class="control-label"></label>
-        <input asp-for="Email" type="email" class="form-control form-control-sm" style="width:40%" />
-        @*<span asp-validation-for="Email" class="text-danger"></span>*@
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Department" class="control-label"></label>
-        <input asp-for="Department" class="form-control form-control-sm" style="width:40%" />
-        @*<span asp-validation-for="Department" class="text-danger"></span>*@
-    </div>
-
-    <div class="form-group">
-        <label asp-for="HireDate" class="control-label"></label>
-        <input asp-for="HireDate" type="date" class="form-control form-control-sm" style="width:40%" />
-        @*<span asp-validation-for="HireDate" class="text-danger"></span>*@
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Salary" class="control-label"></label>
-        <input asp-for="Salary" class="form-control form-control-sm" name="Salary" style="width:40%" />
-        @*<span asp-validation-for="Salary" class="textdanger"></span>*@
-    </div>
-    <button type="submit" value="Save" class="btn btn-primary">Save</button>
-    <button type="submit" value="Cancel" class="btn btn-secondary">Cancel</button>
-
-</form>
+    </form>
 </div>
 <div class="container p-4 bg-white rounded shadow">
-<h3>Search Employee:</h3>
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <input type="text" id="searchEmployee" class="form-control " style="width:30%" placeholder="Search Employee">
-    <button id="deleteSelected" class="btn btn-danger">Delete Selected</button>
-</div>
-<table class="table table-bordered mt-3">
-    <thead id="employeeTableHead" class="table-dark">
-        <tr>
-            <th><input type="checkbox" id="selectAll"></th>
-            <th>Employee ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Department</th>
-            <th>Hire Date</th>
-            <th>Salary</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody id="employeeTableBody">
-        <!-- Data will be inserted here dynamically -->
-    </tbody>
-</table>
+    <h3>Search Employee:</h3>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <input type="text" id="searchEmployee" class="form-control " style="width:30%" placeholder="Search Employee">
+        <button id="deleteSelected" class="btn btn-danger">Delete Selected</button>
+    </div>
+    <table class="table table-bordered mt-3">
+        <thead id="employeeTableHead" class="table-dark">
+            <tr>
+                <th><input type="checkbox" id="selectAll"></th>
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Hire Date</th>
+                <th>Salary</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="employeeTableBody">
+            <!-- Data will be inserted here dynamically -->
+        </tbody>
+    </table>
 </div>
 <script src="~/scripts/validationformates.js"></script>
 <script type="text/javascript">
@@ -127,7 +94,6 @@
     });
     $("#searchEmployee").on("keyup", function () {
         var value = $(this).val().toLowerCase();
-        debugger;
         $("#employeeTableBody tr").filter(function () {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
         });

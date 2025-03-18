@@ -44,10 +44,6 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
             {
                 return BadRequest("Data not recived");
             }
-            if (employee!=null && employee.CreatedDate == null)
-            {
-                employee.CreatedDate = DateTime.Now;
-            }
             employee.LastModifiedDate = DateTime.Now;
             _employeeDbContext.Update(employee);
             var _Employees = await _employeeDbContext.SaveChangesAsync();

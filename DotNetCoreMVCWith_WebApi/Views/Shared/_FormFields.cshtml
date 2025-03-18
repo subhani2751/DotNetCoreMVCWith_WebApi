@@ -1,0 +1,35 @@
+﻿@model DotNetCoreMVCWith_WebApi.Models.Employee
+
+<div class="form-group">
+    <input asp-for="EmployeeId" type="hidden" class="form-control form-control-sm" style="width:40%" />
+    <input asp-for="CreatedDate" type="date"  class="form-control form-control-sm" style="width:40%;display:none" />
+</div>
+<div class="form-group">
+    <label asp-for="FirstName" class="control-label"></label>
+    <input asp-for="FirstName" class="form-control form-control-sm" style="width:40%" />
+</div>
+
+<div class="form-group">
+    <label asp-for="LastName" class="control-label"></label>
+    <input asp-for="LastName" class="form-control form-control-sm" style="width:40%" />
+</div>
+
+<div class="form-group">
+    <label asp-for="Email" class="control-label"></label>
+    <input asp-for="Email" type="email" class="form-control form-control-sm" style="width:40%" />
+</div>
+
+<div class="form-group">
+    <label asp-for="Department" class="control-label"></label>
+    <input asp-for="Department" class="form-control form-control-sm" style="width:40%" />
+</div>
+
+<div class="form-group">
+    <label asp-for="HireDate" class="control-label"></label>
+    <input asp-for="HireDate" type="date" class="form-control form-control-sm" style="width:40%" />
+</div>
+
+<div class="form-group">
+    <label asp-for="Salary" class="control-label"></label>
+    <input asp-for="Salary" class="form-control form-control-sm" name="Salary" style="width:40%" />
+</div>
