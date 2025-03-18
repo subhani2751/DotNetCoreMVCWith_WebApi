@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DotNetCoreMVCWith_WebApi.Models;
 
@@ -22,4 +23,6 @@ public partial class Employee
     public DateTime? CreatedDate { get; set; }
 
     public DateTime? LastModifiedDate { get; set; }
+    [NotMapped]
+    public string? smessage { get; set; }
 }

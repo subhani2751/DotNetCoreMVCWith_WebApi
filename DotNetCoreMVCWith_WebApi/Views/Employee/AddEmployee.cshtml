@@ -3,7 +3,7 @@
     ViewData["Title"] = "AddEmployee";
 }
 
-
+<div class="container p-4 bg-light rounded shadow mb-5">
 <form id="AddEmployeeForm">
     <h2>Employee Registration form</h2>
     <div class="form-group">
@@ -44,9 +44,17 @@
     <button type="submit" value="Cancel" class="btn btn-secondary">Cancel</button>
 
 </form>
+</div>
+<div class="container p-4 bg-white rounded shadow">
+<h3>Search Employee:</h3>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <input type="text" id="searchEmployee" class="form-control " style="width:30%" placeholder="Search Employee">
+    <button id="deleteSelected" class="btn btn-danger">Delete Selected</button>
+</div>
 <table class="table table-bordered mt-3">
     <thead id="employeeTableHead" class="table-dark">
         <tr>
+            <th><input type="checkbox" id="selectAll"></th>
             <th>Employee ID</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -61,6 +69,7 @@
         <!-- Data will be inserted here dynamically -->
     </tbody>
 </table>
+</div>
 <script src="~/scripts/validationformates.js"></script>
 <script type="text/javascript">
     let actionType = "";
@@ -74,6 +83,54 @@
         //if(actionType=="Cancel"){
             
         //}
+    });
+    $(document).on('change', '#selectAll', function () {
+        $(".rowCheckbox").prop('checked', this.checked);
+    });
+    $(document).on('change', '.rowCheckbox', function () {
+        if (!this.checked) {
+            $('#selectAll').prop('checked', false);
+        }
+        // If all checkboxes are checked, check Select All
+        if ($('.rowCheckbox:checked').length === $('.rowCheckbox').length) {
+            $('#selectAll').prop('checked', true);
+        }
+    });
+    $("#deleteSelected").click(function () {
+        var selected = $(".rowCheckbox:checked");
+        if (selected.length === 0) {
+            alert("Please select at least one employee to delete.");
+            return;
+        }
+        var empIds = [];
+        selected.each(function () {
+            empIds.push($(this).data("id"));
+        });
+
+        // Convert array to CSV format
+        var empIdsCSV = empIds.join(',');
+            $.ajax({
+            url: "https://localhost:44389/api/ApiEmployee/Delete?ids=" + empIdsCSV,
+                type: "put",
+                contentType: "application/json",
+                success: function (result) {
+                empIds.forEach(function (empId) {
+                    $("#row_" + empId).remove(); // Remove each row by ID
+                });
+                $('#selectAll').prop('checked', false);
+                     // Remove the row on success
+                },
+                error: function (err) {
+                    alert("Failed to delete employee with ID " + empId);
+                }
+            });
+    });
+    $("#searchEmployee").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        debugger;
+        $("#employeeTableBody tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
     });
     $(document).ready(function () {
         $("#AddEmployeeForm").validate({
@@ -153,8 +210,8 @@
                         data: JSON.stringify(Formdata),
                         success: function (response) {
                             form.reset();
-                            listEmployees();
-                            alert("Employee saved successfully!");
+                            listEmployees(response);
+                            alert(response.smessage);
                         },
                         error: function (e) {
                             alert('Error ' + e.responseText);
@@ -170,35 +227,58 @@
        
      });
 
-     function listEmployees(){
-        $.ajax({
-            url: "https://localhost:44389/api/ApiEmployee/GetAllEmployees",
-            type: "get",
-            contentType: "application/json",
-            success: function (Result) {
-                var tableBody = $("#employeeTableBody");
-                $.each(Result, function (index, emp) {
-                    var row = `<tr id="row_${emp.employeeId}">
-                                    <td>${emp.employeeId}</td>
-                                    <td>${emp.firstName}</td>
-                                    <td>${emp.lastName}</td>
-                                    <td>${emp.email}</td>
-                                    <td>${emp.department}</td>
-                                    <td>${emp.hireDate ? emp.hireDate.split("T")[0] : ""}</td>
-                                    <td>${emp.salary}</td>
-                                    <td>
-                                        <button class="btn btn-success btn-sm Edit" data-id="${emp.employeeId}">Edit</button>
-                                        <button class="btn btn-danger btn-sm deleteRow" data-id="${emp.employeeId}">Delete</button>
-                                    </td>
-                                </tr>`;
-                    tableBody.append(row);
-                });
-                /*alert("data came successfully!" + Result);*/
-            },
-            error: function (E) {
-                alert("data hadn't came !" + E);
-            }
-        });
+    function listEmployees(Formdata) {
+        if (Formdata != null && Formdata != undefined) {
+            var tableBody = $("#employeeTableBody");
+            var row = `<tr id="row_${Formdata.employeeId}">
+                            <td><input type="checkbox" class="rowCheckbox" data-id="${Formdata.employeeId}"></td>
+                            <td>${Formdata.employeeId}</td>
+                            <td>${Formdata.firstName}</td>
+                            <td>${Formdata.lastName}</td>
+                            <td>${Formdata.email}</td>
+                            <td>${Formdata.department}</td>
+                            <td>${Formdata.hireDate ? Formdata.hireDate.split("T")[0] : ""}</td>
+                            <td>${Formdata.salary}</td>
+                        <td>
+                                <button class="btn btn-success btn-sm Edit" data-id="${Formdata.employeeId}">Edit</button>
+                                <button class="btn btn-danger btn-sm deleteRow" data-id="${Formdata.employeeId}">Delete</button>
+                        </td>
+                    </tr>`;
+            tableBody.append(row);
+        }
+        else{
+            $.ajax({
+                url: "https://localhost:44389/api/ApiEmployee/GetAllEmployees",
+                type: "get",
+                contentType: "application/json",
+                success: function (Result) {
+                    var tableBody = $("#employeeTableBody");
+                    $.each(Result, function (index, emp) {
+                        var row = `<tr id="row_${emp.employeeId}">
+                                        <td><input type="checkbox" class="rowCheckbox" data-id="${emp.employeeId}"></td>
+                                        <td>${emp.employeeId}</td>
+                                        <td>${emp.firstName}</td>
+                                        <td>${emp.lastName}</td>
+                                        <td>${emp.email}</td>
+                                        <td>${emp.department}</td>
+                                        <td>${emp.hireDate ? emp.hireDate.split("T")[0] : ""}</td>
+                                        <td>${emp.salary}</td>
+                                        <td>
+                                            <button class="btn btn-success btn-sm Edit" data-id="${emp.employeeId}">Edit</button>
+                                            <button class="btn btn-danger btn-sm deleteRow" data-id="${emp.employeeId}">Delete</button>
+                                        </td>
+                                    </tr>`;
+                        tableBody.append(row);
+                    });
+                    /*alert("data came successfully!" + Result);*/
+                },
+                error: function (E) {
+                    alert("data hadn't came !" + E);
+                }
+            });
+        }
+        
+        
      };
           $(document).on("click", ".Edit", function () {
                 var Empid = $(this).data("id");
@@ -221,7 +301,7 @@
                  var row = $("#row_" + Empid);
                 console.log(row);
                 $.ajax({
-                    url: "https://localhost:44389/api/ApiEmployee/Delete?id=" + Empid,
+            url: "https://localhost:44389/api/ApiEmployee/Delete?ids=" + Empid,
                     type: "put",
                     contentType: "application/json",
                     data : "",
@@ -237,9 +317,26 @@
             });
 </script>
 <style type="text/css">
-    .Form-Center {
-        display: flex;
-        justify-content: space-around;
+    .container {
+        max-width: 1200px;
     }
+
+    /* Add space between form and table section */
+    .mb-5 {
+        margin-bottom: 3rem !important;
+    }
+
+    #searchEmployee {
+        max-width: 300px;
+    }
+
+    #AddEmployeeForm input {
+        width: 100%;
+    }
+
+    .shadow {
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
 </style>
 
