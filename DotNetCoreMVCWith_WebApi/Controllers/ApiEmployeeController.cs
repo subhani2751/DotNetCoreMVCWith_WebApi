@@ -1,4 +1,5 @@
-﻿using DotNetCoreMVCWith_WebApi.Models;
+﻿using Azure.Core;
+using DotNetCoreMVCWith_WebApi.Models;
 using DotNetCoreMVCWith_WebApi.MyDatabaseContext;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,9 +25,10 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
             }
             employee.CreatedDate= DateTime.Now;
             employee.LastModifiedDate= DateTime.Now;
-            _employeeDbContext.Add(employee);
+            _employeeDbContext.Employees.Add(employee);
             var _Return=await _employeeDbContext.SaveChangesAsync();
-            return Ok(new { Message = "Employee added successfully" });
+            employee.smessage = "Employee added successfully";
+            return Ok(employee);
         }
         [HttpGet("GetAllEmployees")]
         public async Task<IActionResult> GetAllEmployees()
@@ -52,10 +54,16 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
             return Ok(new { Message = "Employee Details modified successfully" });
         }
         [HttpPut("Delete")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(string ids)
         {
-            var EmployeeDS = await _employeeDbContext.Employees.FirstOrDefaultAsync(x => x.EmployeeId == id);
-            _employeeDbContext.Remove(EmployeeDS);
+            var idslst = ids.Split(',')
+                     .Select(id => Convert.ToInt32(id))
+                     .ToList();
+            foreach (var id in idslst)
+            {
+                var EmployeeDS = await _employeeDbContext.Employees.FirstOrDefaultAsync(x => x.EmployeeId == id);
+                _employeeDbContext.Remove(EmployeeDS);
+            }
             var _Employees = await _employeeDbContext.SaveChangesAsync();
             return Ok(new { Message = "Employee Deleted successfully" });
         }
