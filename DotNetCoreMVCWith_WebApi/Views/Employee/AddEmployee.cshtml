@@ -15,8 +15,12 @@
 <div class="container p-4 bg-white rounded shadow">
     <h3>Search Employee:</h3>
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <input type="text" id="searchEmployee" class="form-control " style="width:30%" placeholder="Search Employee">
-        <button id="deleteSelected" class="btn btn-danger">Delete Selected</button>
+        <input type="text" id="searchEmployee" class="form-control" style="width:30%" placeholder="Search Employee">
+        <div>
+            <input type="file" id="excelFile" accept=".xls,.xlsx" style="display: none;">
+            <button id="importExcel" class="btn btn-success me-2">Import Excel</button>
+            <button id="deleteSelected" class="btn btn-danger">Delete Selected</button>
+        </div>
     </div>
     <table class="table table-bordered mt-3">
         <thead id="employeeTableHead" class="table-dark">
@@ -50,6 +54,36 @@
         //if(actionType=="Cancel"){
             
         //}
+    });
+    $("#importExcel").click(function () {
+        $("#excelFile").click();
+    });
+    $("#excelFile").change(function () {
+        var file = this.files[0];
+        if (file) {
+            var formData = new FormData();
+            formData.append("excelFile", file);
+
+            $.ajax({
+                url: "https://localhost:44389/api/ApiEmployee/ImportExcel",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response.success) {
+                        $("#employeeTableBody").empty();
+                        listEmployees(); // Refresh the table
+                        alert("Excel file imported successfully!");
+                    } else {
+                        alert("Error importing Excel: " + response.message);
+                    }
+                },
+                error: function (err) {
+                    alert("Error importing Excel file: " + err.responseText);
+                }
+            });
+        }
     });
     $(document).on('change', '#selectAll', function () {
         $(".rowCheckbox").prop('checked', this.checked);
