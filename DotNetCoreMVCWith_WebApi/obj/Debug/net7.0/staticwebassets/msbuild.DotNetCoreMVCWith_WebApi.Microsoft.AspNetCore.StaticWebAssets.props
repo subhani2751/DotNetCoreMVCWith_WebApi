@@ -1110,8 +1110,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>7trploc4ur</Fingerprint>
-      <Integrity>9VHMGG3/o6TG8b0T3vWSnq2xbyo5OHT6UoShEcerDhY=</Integrity>
+      <Fingerprint>ouaum1z79u</Fingerprint>
+      <Integrity>kANIqUAbsCPZRxKjsvPfLlXYTjYvztkT7mxMG+biDW4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Scripts\Export_Import.js'))</OriginalItemSpec>

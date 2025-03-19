@@ -47,10 +47,15 @@ $(document).on("click", ".export-option", function () {
         url: "https://localhost:44389/api/ApiEmployee/Export?format=" + format + "&ids=" + empIdsCSV,
         type: "POST",
         //data: JSON.stringify({ format: format, ids: empIdsCSV }),
-        //xhrFields: { responseType: 'blob' }, // Handle binary data
+        xhrFields: { responseType: 'blob' }, // Handle binary data
         success: function (data, status, xhr) {
-            let filename = xhr.getResponseHeader("Content-Disposition").split("filename=")[1];
-            let blob = new Blob([data], { type: xhr.getResponseHeader("Content-Type") });
+            let contentDisposition = xhr.getResponseHeader("Content-Disposition");
+            let filename = contentDisposition ? contentDisposition.split("filename=")[1] : "SelectedEmployees.xlsx";
+            let fileType = "";
+            if (format === "Excel") fileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            else if (format === "CSV") fileType = "text/csv";
+            else if (format === "PDF") fileType = "application/pdf";
+            let blob = new Blob([data], { type: fileType });
             let link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);
             link.download = filename;

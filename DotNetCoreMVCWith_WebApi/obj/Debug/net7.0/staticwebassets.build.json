@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Y3/CUI8jRpzjhcJJZEcEiD9dytYq2Qn8Oc2asMOYusQ=",
+  "Hash": "R8dT2ZmZMglNkF1ERvVXG2FIJi5nU+PNhWed0jQW1os=",
   "Source": "DotNetCoreMVCWith_WebApi",
   "BasePath": "_content/DotNetCoreMVCWith_WebApi",
   "Mode": "Default",
@@ -1333,8 +1333,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "7trploc4ur",
-      "Integrity": "9VHMGG3/o6TG8b0T3vWSnq2xbyo5OHT6UoShEcerDhY=",
+      "Fingerprint": "ouaum1z79u",
+      "Integrity": "kANIqUAbsCPZRxKjsvPfLlXYTjYvztkT7mxMG+biDW4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Scripts\\Export_Import.js"
@@ -1467,7 +1467,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 05:28:47 GMT"
+          "Value": "Wed, 19 Mar 2025 07:45:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1504,7 +1504,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 05:28:47 GMT"
+          "Value": "Wed, 19 Mar 2025 07:45:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1549,7 +1549,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 05:28:47 GMT"
+          "Value": "Wed, 19 Mar 2025 07:45:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1594,7 +1594,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 05:28:47 GMT"
+          "Value": "Wed, 19 Mar 2025 07:45:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6447,51 +6447,6 @@
       ]
     },
     {
-      "Route": "Scripts/Export_Import.7trploc4ur.js",
-      "AssetFile": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Scripts\\Export_Import.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2340"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"9VHMGG3/o6TG8b0T3vWSnq2xbyo5OHT6UoShEcerDhY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 07:31:54 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "7trploc4ur"
-        },
-        {
-          "Name": "label",
-          "Value": "Scripts/Export_Import.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-9VHMGG3/o6TG8b0T3vWSnq2xbyo5OHT6UoShEcerDhY="
-        }
-      ]
-    },
-    {
       "Route": "Scripts/Export_Import.js",
       "AssetFile": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Scripts\\Export_Import.js",
       "Selectors": [],
@@ -6502,7 +6457,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2340"
+          "Value": "2697"
         },
         {
           "Name": "Content-Type",
@@ -6510,11 +6465,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"9VHMGG3/o6TG8b0T3vWSnq2xbyo5OHT6UoShEcerDhY=\""
+          "Value": "\"kANIqUAbsCPZRxKjsvPfLlXYTjYvztkT7mxMG+biDW4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 07:31:54 GMT"
+          "Value": "Wed, 19 Mar 2025 07:49:50 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6524,7 +6479,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-9VHMGG3/o6TG8b0T3vWSnq2xbyo5OHT6UoShEcerDhY="
+          "Value": "sha256-kANIqUAbsCPZRxKjsvPfLlXYTjYvztkT7mxMG+biDW4="
+        }
+      ]
+    },
+    {
+      "Route": "Scripts/Export_Import.ouaum1z79u.js",
+      "AssetFile": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Scripts\\Export_Import.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2697"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kANIqUAbsCPZRxKjsvPfLlXYTjYvztkT7mxMG+biDW4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Mar 2025 07:49:50 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ouaum1z79u"
+        },
+        {
+          "Name": "label",
+          "Value": "Scripts/Export_Import.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kANIqUAbsCPZRxKjsvPfLlXYTjYvztkT7mxMG+biDW4="
         }
       ]
     },
