@@ -33,12 +33,49 @@
   },
   {
     "ContainingType": "DotNetCoreMVCWith_WebApi.Controllers.ApiEmployeeController",
+    "Method": "Export",
+    "RelativePath": "api/ApiEmployee/Export",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "format",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ids",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DotNetCoreMVCWith_WebApi.Controllers.ApiEmployeeController",
     "Method": "GetAllEmployees",
     "RelativePath": "api/ApiEmployee/GetAllEmployees",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DotNetCoreMVCWith_WebApi.Controllers.ApiEmployeeController",
+    "Method": "ImportExcel",
+    "RelativePath": "api/ApiEmployee/ImportExcel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "excelFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {

@@ -19,6 +19,16 @@
         <div>
             <input type="file" id="excelFile" accept=".xls,.xlsx" style="display: none;">
             <button id="importExcel" class="btn btn-success me-2">Import Excel</button>
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Export
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item export-option" data-format="CSV">Export CSV</a></li>
+                    <li><a class="dropdown-item export-option" data-format="Excel">Export Excel</a></li>
+                    <li><a class="dropdown-item export-option" data-format="PDF">Export PDF</a></li>
+                </ul>
+            </div>
             <button id="deleteSelected" class="btn btn-danger">Delete Selected</button>
         </div>
     </div>
@@ -42,6 +52,7 @@
     </table>
 </div>
 <script src="~/scripts/validationformates.js"></script>
+<script src="~/scripts/export_import.js"></script>
 <script type="text/javascript">
     let actionType = "";
     //$.validator.setDefaults({
@@ -54,36 +65,6 @@
         //if(actionType=="Cancel"){
             
         //}
-    });
-    $("#importExcel").click(function () {
-        $("#excelFile").click();
-    });
-    $("#excelFile").change(function () {
-        var file = this.files[0];
-        if (file) {
-            var formData = new FormData();
-            formData.append("excelFile", file);
-
-            $.ajax({
-                url: "https://localhost:44389/api/ApiEmployee/ImportExcel",
-                type: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    if (response.success) {
-                        $("#employeeTableBody").empty();
-                        listEmployees(); // Refresh the table
-                        alert("Excel file imported successfully!");
-                    } else {
-                        alert("Error importing Excel: " + response.message);
-                    }
-                },
-                error: function (err) {
-                    alert("Error importing Excel file: " + err.responseText);
-                }
-            });
-        }
     });
     $(document).on('change', '#selectAll', function () {
         $(".rowCheckbox").prop('checked', this.checked);
@@ -301,7 +282,7 @@
                  var row = $("#row_" + Empid);
                 console.log(row);
                 $.ajax({
-            url: "https://localhost:44389/api/ApiEmployee/Delete?ids=" + Empid,
+                    url: "https://localhost:44389/api/ApiEmployee/Delete?ids=" + Empid,
                     type: "put",
                     contentType: "application/json",
                     data : "",

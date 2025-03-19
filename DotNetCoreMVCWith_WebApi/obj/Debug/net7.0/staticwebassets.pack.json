@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\DotNetCoreMVCWith_WebApi.lsjz7ps9le.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Scripts\\Export_Import.js",
+      "PackagePath": "staticwebassets\\Scripts\\Export_Import.js"
+    },
+    {
       "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Scripts\\ValidationFormates.js",
       "PackagePath": "staticwebassets\\Scripts\\ValidationFormates.js"
     },

@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.OleDb;
+using DocumentFormat.OpenXml.InkML;
+using DotNetCoreMVCWith_WebApi.Services;
 
 namespace DotNetCoreMVCWith_WebApi.Controllers
 {
@@ -151,6 +153,32 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, new { success = false, message = ex.Message });
+            }
+        }
+        [HttpPost("Export")]
+        public async Task<IActionResult> Export(string format, string ids)
+        {
+            Export_Import export_Import = new Export_Import();
+            if (ids == null || !ids.Any())
+            {
+                return Ok(new { success = false, message = "No employees selected." });
+            }
+            var idslst = ids.Split(',')
+                    .Select(id => Convert.ToInt32(id))
+                    .ToList();
+
+            List<Employee> employees = await _employeeDbContext.Employees.Where(e => idslst.Contains(e.EmployeeId)).ToListAsync();
+
+            switch (format)
+            {
+                case "CSV":
+                    return export_Import.ExportCSV(employees);
+                case "Excel":
+                    return export_Import.ExportExcel(employees);
+                case "PDF":
+                    return export_Import.ExportPDF(employees);
+                default:
+                    return Ok(new { success = false, message = "Invalid export format." });
             }
         }
     }
