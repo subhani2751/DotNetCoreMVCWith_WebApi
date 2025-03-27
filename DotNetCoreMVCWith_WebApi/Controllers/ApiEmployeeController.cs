@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Data.OleDb;
 using DocumentFormat.OpenXml.InkML;
 using DotNetCoreMVCWith_WebApi.Services;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace DotNetCoreMVCWith_WebApi.Controllers
 {
@@ -18,9 +19,11 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
     public class ApiEmployeeController : ControllerBase
     {
         private readonly EmployeeDbContext _employeeDbContext;
-        public ApiEmployeeController(EmployeeDbContext employeeDbContext)
+        private readonly CacheMemory _cacheMemory;
+        public ApiEmployeeController(EmployeeDbContext employeeDbContext, CacheMemory cacheMemory)
         {
             _employeeDbContext = employeeDbContext;
+            _cacheMemory = cacheMemory;
         }
         [HttpPost]
         public async Task<IActionResult> post([FromBody] Employee employee)
@@ -39,7 +42,17 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
         [HttpGet("GetAllEmployees")]
         public async Task<IActionResult> GetAllEmployees()
         {
-            var LstEmployees = await _employeeDbContext.Employees.ToListAsync();
+            string key = "GetAllEmployees";
+
+            var LstEmployees = _cacheMemory.getcache<Employee>(key);
+            if (LstEmployees == null)
+            {
+                 LstEmployees = await _employeeDbContext.Employees.ToListAsync();
+                if (LstEmployees.Count > 0)
+                {
+                    _cacheMemory.setcache("GetAllEmployees", LstEmployees, Minutes: 5);
+                }
+            }
             return Ok(LstEmployees);
         }
         /*[HttpGet("Edit/{id}")]*/
@@ -180,6 +193,19 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
                 default:
                     return Ok(new { success = false, message = "Invalid export format." });
             }
+        }
+
+        [HttpGet("getTablePageData")]
+        public async Task<IActionResult> getTablePageData(int pagesize =10 ,int pagenumber=1)
+        {
+            var LstEmployees = new List<Employee>();
+            var AllEmployees = _cacheMemory.getcache<Employee>("GetAllEmployees");
+            if(AllEmployees != null)
+            {
+                LstEmployees = AllEmployees.Skip((pagenumber-1)*pagesize).Take(pagesize).ToList();
+            }
+            LstEmployees = await _employeeDbContext.Employees.ToListAsync();
+            return Ok(LstEmployees);
         }
     }
 }

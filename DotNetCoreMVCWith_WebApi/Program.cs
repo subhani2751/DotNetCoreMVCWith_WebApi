@@ -1,4 +1,5 @@
 using DotNetCoreMVCWith_WebApi.MyDatabaseContext;
+using DotNetCoreMVCWith_WebApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,8 @@ builder.Services.AddDbContext<EmployeeDbContext>(Option =>
 builder.Services.AddControllersWithViews().AddViewOptions(options => {
     options.HtmlHelperOptions.ClientValidationEnabled = false;
 });
+builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<CacheMemory>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -50,11 +50,25 @@
             <!-- Data will be inserted here dynamically -->
         </tbody>
     </table>
+   @*  <div id="loader" class="loader-overlay">
+        <div class="loader"></div>
+    </div> *@
+    <div class="d-flex justify-content-center align-items-center mt-3 gap-4">
+        @await Html.PartialAsync("_Paging")
+    </div>
 </div>
 <script src="~/scripts/validationformates.js"></script>
 <script src="~/scripts/export_import.js"></script>
+<script src="~/scripts/pagging.js"></script>
 <script type="text/javascript">
     let actionType = "";
+        function showLoader() {
+        $("#loader-overlay").fadeIn(); // Smoothly show loader
+    }
+
+    function hideLoader() {
+        $("#loader-overlay").fadeOut(); // Smoothly hide loader
+    }
     //$.validator.setDefaults({
     //    ignore: []
     //});
@@ -209,6 +223,7 @@
      });
 
     function listEmployees(Formdata) {
+        showLoader();
         if (Formdata != null && Formdata != undefined) {
             var tableBody = $("#employeeTableBody");
             var row = `<tr id="row_${Formdata.employeeId}">
@@ -226,6 +241,7 @@
                         </td>
                     </tr>`;
             tableBody.append(row);
+            hideLoader();
         }
         else{
             $.ajax({
@@ -250,16 +266,16 @@
                                         </td>
                                     </tr>`;
                         tableBody.append(row);
+                       hideLoader();
                     });
                     /*alert("data came successfully!" + Result);*/
                 },
                 error: function (E) {
+                   hideLoader();
                     alert("data hadn't came !" + E);
                 }
             });
         }
-        
-        
      };
           $(document).on("click", ".Edit", function () {
                 var Empid = $(this).data("id");
@@ -318,6 +334,69 @@
     .shadow {
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+     /* Loader Styles */
+    /*.loader-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.7);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+    }
 
+    .loader {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    }
+
+    @@keyframes spin {
+        0% {transform: rotate(0deg);}
+        100% { transform: rotate(360deg);}
+      } */
+
+    /* Loader Overlay (Full-Screen Cover) */
+    #loader-overlay {
+        display: none; /* Initially hidden */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.7); /* Light transparent background */
+        z-index: 9998;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Loader (Spinner Animation) */
+    .loader {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+        z-index: 9999;
+    }
+
+    /* Keyframe Animation for Spinner */
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 </style>
 
