@@ -25,4 +25,12 @@ public partial class Employee
     public DateTime? LastModifiedDate { get; set; }
     [NotMapped]
     public string? smessage { get; set; }
+    [NotMapped]
+    public int RecordCount { get; set; }
+}
+
+public class EmployeeApiResponse
+{
+    public int TotalRecords { get; set; }
+    public List<Employee> lstEmployees { get; set; }
 }

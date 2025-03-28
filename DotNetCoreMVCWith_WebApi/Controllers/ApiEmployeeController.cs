@@ -80,6 +80,7 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
                 _employeeDbContext.Remove(EmployeeDS);
             }
             var _Employees = await _employeeDbContext.SaveChangesAsync();
+            _cacheMemory.Removecache("GetAllEmployees");
             return Ok(new { Message = "Employee Deleted successfully" });
         }
         [HttpPost("ImportExcel")]
@@ -198,14 +199,26 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
         [HttpGet("getTablePageData")]
         public async Task<IActionResult> getTablePageData(int pagesize =10 ,int pagenumber=1)
         {
-            var LstEmployees = new List<Employee>();
+            EmployeeApiResponse employeeApiResponse = new EmployeeApiResponse();
             var AllEmployees = _cacheMemory.getcache<Employee>("GetAllEmployees");
             if(AllEmployees != null)
             {
-                LstEmployees = AllEmployees.Skip((pagenumber-1)*pagesize).Take(pagesize).ToList();
+                employeeApiResponse.TotalRecords = AllEmployees.Count();
+                employeeApiResponse.lstEmployees = AllEmployees.Skip((pagenumber-1)*pagesize).Take(pagesize).ToList();
             }
-            LstEmployees = await _employeeDbContext.Employees.ToListAsync();
-            return Ok(LstEmployees);
+            else
+            {
+                AllEmployees = await _employeeDbContext.Employees.ToListAsync();
+                employeeApiResponse.TotalRecords = AllEmployees.Count();
+                employeeApiResponse.lstEmployees = AllEmployees.Skip((pagenumber - 1) * pagesize).Take(pagesize).ToList();
+                if (AllEmployees.Count > 0)
+                {
+                    _cacheMemory.setcache("GetAllEmployees", AllEmployees, Minutes: 5);
+                }
+            }
+               
+
+            return Ok(employeeApiResponse);
         }
     }
 }
