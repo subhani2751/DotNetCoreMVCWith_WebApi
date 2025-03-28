@@ -2,7 +2,11 @@
   "Files": [
     {
       "Id": "C:\\Users\\subha\\source\\repos\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\DotNetCoreMVCWith_WebApi.bundle.scp.css",
-      "PackagePath": "staticwebassets\\DotNetCoreMVCWith_WebApi.bundle.scp.css"
+      "PackagePath": "staticwebassets\\DotNetCoreMVCWith_WebApi.lsjz7ps9le.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\subha\\source\\repos\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Scripts\\Export_Import.js",
+      "PackagePath": "staticwebassets\\Scripts\\Export_Import.js"
     },
     {
       "Id": "C:\\Users\\subha\\source\\repos\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Scripts\\ValidationFormates.js",
@@ -247,6 +251,10 @@
     {
       "Id": "C:\\Users\\subha\\source\\repos\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.DotNetCoreMVCWith_WebApi.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.DotNetCoreMVCWith_WebApi.Microsoft.AspNetCore.StaticWebAssets.props",
