@@ -12,6 +12,14 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
         {
             _employeeDbContext = employeeDbContext;
         }
+        public async Task<IActionResult> Login()
+        {
+            return View("Views/Login/Login.cshtml");
+        }
+        public async Task<IActionResult> Register()
+        {
+            return View("Views/Login/Register.cshtml");
+        }
         public async Task<IActionResult> AddEmployee()
         {
            //var Employeeslst= await _employeeDbContext.Employees.ToListAsync();

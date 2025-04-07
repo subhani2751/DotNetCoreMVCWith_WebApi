@@ -11,6 +11,9 @@ using System.Data.OleDb;
 using DocumentFormat.OpenXml.InkML;
 using DotNetCoreMVCWith_WebApi.Services;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.AspNetCore.Identity;
+using System.Drawing;
+using System.Security.Claims;
 
 namespace DotNetCoreMVCWith_WebApi.Controllers
 {
@@ -20,10 +23,15 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
     {
         private readonly EmployeeDbContext _employeeDbContext;
         private readonly CacheMemory _cacheMemory;
-        public ApiEmployeeController(EmployeeDbContext employeeDbContext, CacheMemory cacheMemory)
+        private readonly IPasswordHasher<User> _passwordHasher;
+        private readonly IConfiguration _config;
+        public ApiEmployeeController(EmployeeDbContext employeeDbContext, CacheMemory cacheMemory, IPasswordHasher<User> passwordHasher,
+        IConfiguration config)
         {
             _employeeDbContext = employeeDbContext;
             _cacheMemory = cacheMemory;
+            _passwordHasher = passwordHasher;
+            _config = config;
         }
         [HttpPost]
         public async Task<IActionResult> post([FromBody] Employee employee)
@@ -220,5 +228,92 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
 
             return Ok(employeeApiResponse);
         }
+
+        [HttpGet("CheckCredentials")]
+        public async Task<IActionResult> CheckCredentials(string Username = "", string PasswordHash = "")
+        {
+            TokenJWT tokenJWT = new TokenJWT(_config);
+            if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(PasswordHash))
+                return BadRequest("Username and password are required.");
+
+            var user = await _employeeDbContext.Users.FirstOrDefaultAsync(u => u.Username == Username);
+            if (user == null)
+                return Unauthorized("Invalid username or password");
+
+            var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, PasswordHash);
+            if (result == PasswordVerificationResult.Failed)
+                return Unauthorized("Invalid username or password");
+
+            if (user.IsEmailConfirmed == false)
+                return Unauthorized("Email not confirmed.");
+
+            var token = tokenJWT.GenerateJwtToken(user); // 👇 defined below
+
+            return Ok(new
+            {
+                Message = "Login successful",
+                Token = token,
+                Username = user.Username,
+                Role = user.Role
+            });
+        }
+
+        [HttpPost("RegisterCredentials")]
+        public async Task<IActionResult> RegisterCredentials(string Username="",string Email="",string PasswordHash="")
+        {
+            // 1. Validate model
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            // 2. Check if user already exists
+            var existingUser = await _employeeDbContext.Users.FirstOrDefaultAsync(u => u.Username == Username || u.Email == Email);
+            if (existingUser != null)
+                return BadRequest(new { Message = "Username or Email already exists." });
+
+            // 3. Create user and hash password
+            var user = new User
+            {
+                Username = Username,
+                Email = Email,
+                // other properties like CreatedAt, Role, etc.
+            };
+
+            user.PasswordHash = _passwordHasher.HashPassword(user, PasswordHash);
+
+            // 4. Save to database
+            _employeeDbContext.Users.Add(user);
+            await _employeeDbContext.SaveChangesAsync();
+
+            // 5. (Optional) Generate JWT and return it
+            // var token = GenerateJwtToken(user);
+            // return Ok(new { Message = "Registered", Token = token });
+
+            return Ok(new { Message = "User registered successfully." });
+        }
+
+        [HttpPost("RefreshToken")]
+        public async Task<IActionResult> RefreshToken()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            if (identity == null || !identity.IsAuthenticated)
+                return Unauthorized();
+
+            var username = identity.FindFirst(ClaimTypes.Name)?.Value;
+
+            if (string.IsNullOrEmpty(username))
+                return Unauthorized();
+
+            // Fetch user from DB (optional, for role/email/etc)
+            var user = _employeeDbContext.Users.FirstOrDefault(u => u.Username == username);
+            if (user == null)
+                return Unauthorized();
+            TokenJWT tokenJWT = new TokenJWT(_config);
+            // Generate new token (2 minutes expiry)
+            var token = tokenJWT.GenerateJwtToken(user); // Use your JWT generator service
+
+            return Ok(new { token });
+        }
+
     }
 }

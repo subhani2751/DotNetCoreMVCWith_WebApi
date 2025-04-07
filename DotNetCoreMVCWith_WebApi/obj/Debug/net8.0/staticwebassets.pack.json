@@ -9,6 +9,14 @@
       "PackagePath": "staticwebassets\\Scripts\\Export_Import.js"
     },
     {
+      "Id": "C:\\Users\\subha\\source\\repos\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Scripts\\JWTToken.js",
+      "PackagePath": "staticwebassets\\Scripts\\JWTToken.js"
+    },
+    {
+      "Id": "C:\\Users\\subha\\source\\repos\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Scripts\\Pagging.js",
+      "PackagePath": "staticwebassets\\Scripts\\Pagging.js"
+    },
+    {
       "Id": "C:\\Users\\subha\\source\\repos\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Scripts\\ValidationFormates.js",
       "PackagePath": "staticwebassets\\Scripts\\ValidationFormates.js"
     },

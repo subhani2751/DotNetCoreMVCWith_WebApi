@@ -1,0 +1,91 @@
+﻿@model DotNetCoreMVCWith_WebApi.Models.User
+
+
+<h2>Register</h2>
+
+<form id="RegisterCredentials" >
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control form-control-sm" style="width:40%" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Username" class="control-label"></label>
+        <input asp-for="Username" class="form-control form-control-sm" style="width:40%" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PasswordHash" class="control-label"></label>
+        <input asp-for="PasswordHash" class="form-control form-control-sm" style="width:40%" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ConfirmPassword" class="control-label"></label>
+        <input asp-for="ConfirmPassword" class="form-control form-control-sm" style="width:40%" />
+    </div>
+    
+    <button type="submit" class="btn btn-success">Register</button>
+    <a asp-action="Login" asp-controller="Employee" class="btn btn-primary">Go to Login</a>
+</form>
+<script src="~/scripts/validationformates.js"></script>
+<script>
+    $(document).ready(function (){
+        $("#RegisterCredentials").validate({
+            rules: {
+                Email: {
+                    required: true,
+                    EmailFormate: true
+                },
+                Username: {
+                    required: true
+                },
+                PasswordHash: {
+                    required: true
+                },
+                ConfirmPassword: {
+                    required: true,
+                    equalTo : "#PasswordHash"
+                }
+            },
+            messages: {
+                Email: {
+                    required: "Email is required..",
+                    EmailFormate: "Enter a valid Email only"
+                },
+                Username: {
+                    required: "Username is required.",
+                },
+                PasswordHash: {
+                    required: "Password is required..",
+                },
+                ConfirmPassword: {
+                    required: "Confirm Password is required..",
+                    equalTo: "Password and Confirm Password must match."
+                }
+            },
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+                error.css("color", "red");
+            },
+            submitHandler: function (form)
+            {
+                let Username=$("#Username").val();
+                let PasswordHash=$("#PasswordHash").val();
+                let Email=$("#Email").val();
+                debugger;
+                    $.ajax({
+                        url: `/api/ApiEmployee/RegisterCredentials?Username=${Username}&Email=${Email}&PasswordHash=${PasswordHash}`,
+                        type: 'Post',
+                        contentType: 'application/json',
+                        success: function (response) {
+                            debugger;
+                            window.location.href = "/Employee/Login";
+                        },
+                        error: function (e) {
+                            alert('Error ' + e.responseText);
+                        }
+                    });
+
+            }
+        });
+    });
+</script>

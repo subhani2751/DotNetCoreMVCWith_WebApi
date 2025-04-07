@@ -1,6 +1,11 @@
+using System.Text;
+using DotNetCoreMVCWith_WebApi.Models;
 using DotNetCoreMVCWith_WebApi.MyDatabaseContext;
 using DotNetCoreMVCWith_WebApi.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +18,23 @@ builder.Services.AddControllersWithViews().AddViewOptions(options => {
 });
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<CacheMemory>();
+builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)
+            )
+        };
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,11 +50,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Employee}/{action=AddEmployee}/{id?}");
+    pattern: "{controller=Employee}/{action=Login}/{id?}");
 
 app.Run();

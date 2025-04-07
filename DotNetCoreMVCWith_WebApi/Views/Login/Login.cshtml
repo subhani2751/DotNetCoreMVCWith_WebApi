@@ -1,0 +1,62 @@
+﻿@model DotNetCoreMVCWith_WebApi.Models.User
+
+
+<h2>Login</h2>
+
+<form id="CheckCredentials" >
+
+    <div class="form-group">
+        <label asp-for="Username" class="control-label"></label>
+        <input asp-for="Username" class="form-control form-control-sm" style="width:40%" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PasswordHash" class="control-label"></label>
+        <input asp-for="PasswordHash" class="form-control form-control-sm" style="width:40%" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Login</button>
+    <a asp-action="Register" asp-controller="Employee" class="btn btn-primary">Go to Register</a>
+</form>
+<script>
+    $(document).ready(function (){
+        $("#CheckCredentials").validate({
+            rules: {
+                Username: {
+                    required: true
+                },
+                PasswordHash: {
+                    required: true
+                }
+            },
+            messages: {
+                Username: {
+                    required: "Username is required.",
+                },
+                PasswordHash: {
+                    required: "Password is required..",
+                }
+            },
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+                error.css("color", "red");
+            },
+            submitHandler: function (form)
+            {  
+                let Username=$("#Username").val();
+                let PasswordHash=$("#PasswordHash").val();
+                    $.ajax({
+                        url: `/api/ApiEmployee/CheckCredentials?Username=${Username}&PasswordHash=${PasswordHash}`,
+                        type: 'Get',
+                        contentType: 'application/json',
+                        success: function (response) {
+                            localStorage.setItem('jwt',response.token);
+                            window.location.href = "/Employee/AddEmployee";
+                        },
+                        error: function (e) {
+                            alert('Error ' + e.responseText);
+                        }
+                    });
+            }
+        });
+    });
+</script>

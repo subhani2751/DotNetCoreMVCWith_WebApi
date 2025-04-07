@@ -30,8 +30,10 @@
     }
 
     function LoadTable() {
+        const url = '/api/ApiEmployee/getTablePageData?pagesize=' + pagesize + '&pagenumber=' + pagenumber;
+        console.log(url);
         $.ajax({
-            url: 'https://localhost:44389/api/ApiEmployee/getTablePageData?pagesize=' + pagesize + '&pagenumber=' + pagenumber,
+            url: url,
             type: 'GET',
             contentType: 'application/json',
             // data : {pagesize:pagesize,pagenumber:pagenumber},

@@ -8,7 +8,7 @@ $("#excelFile").change(function () {
         formData.append("excelFile", file);
 
         $.ajax({
-            url: "https://localhost:44389/api/ApiEmployee/ImportExcel",
+            url: "/api/ApiEmployee/ImportExcel",
             type: "POST",
             data: formData,
             processData: false,
@@ -44,7 +44,7 @@ $(document).on("click", ".export-option", function () {
     }
 
     $.ajax({
-        url: "https://localhost:44389/api/ApiEmployee/Export?format=" + format + "&ids=" + empIdsCSV,
+        url: "/api/ApiEmployee/Export?format=" + format + "&ids=" + empIdsCSV,
         type: "POST",
         //data: JSON.stringify({ format: format, ids: empIdsCSV }),
         xhrFields: { responseType: 'blob' }, // Handle binary data

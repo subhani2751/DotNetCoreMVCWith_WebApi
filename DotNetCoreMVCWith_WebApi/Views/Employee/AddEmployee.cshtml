@@ -2,8 +2,12 @@
 @{
     ViewData["Title"] = "AddEmployee";
 }
+<div style="position: absolute; top: 20px; right: 20px; z-index: 999;">
+    <button type="button" id="Logoutbtn" click="logout()" class="btn btn-success">Log out</button>
 
+</div>
 <div class="container p-4 bg-light rounded shadow mb-5">
+
     <form id="AddEmployeeForm">
         <h2>Employee Registration form</h2>
             @await Html.PartialAsync("_FormFields")
@@ -60,6 +64,7 @@
 <script src="~/scripts/validationformates.js"></script>
 <script src="~/scripts/export_import.js"></script>
 <script src="~/scripts/pagging.js"></script>
+<script src="~/scripts/JWTToken.js"></script>
 <script type="text/javascript">
     let actionType = "";
         function showLoader() {
@@ -106,7 +111,7 @@
         // Convert array to CSV format
         var empIdsCSV = empIds.join(',');
             $.ajax({
-            url: "https://localhost:44389/api/ApiEmployee/Delete?ids=" + empIdsCSV,
+            url: "/api/ApiEmployee/Delete?ids=" + empIdsCSV,
                 type: "put",
                 contentType: "application/json",
                 success: function (result) {
@@ -199,7 +204,7 @@
                         Salary: $("#Salary").val(),
                     };
                     $.ajax({
-                        url: 'https://localhost:44389/api/ApiEmployee',
+                        url: '/api/ApiEmployee',
                         type: 'post',
                         contentType: 'application/json',
                         data: JSON.stringify(Formdata),
@@ -245,7 +250,7 @@
         }
         else{
             $.ajax({
-                url: "https://localhost:44389/api/ApiEmployee/GetAllEmployees",
+                url: "/api/ApiEmployee/GetAllEmployees",
                 type: "get",
                 contentType: "application/json",
                 success: function (Result) {
@@ -281,7 +286,7 @@
                 var Empid = $(this).data("id");
                 // var row = $("#row_" + Empid);
                 // $.ajax({
-                //     url: "https://localhost:44389/Employee/EditEmployee?id=" + Empid,
+                //     url: "/Employee/EditEmployee?id=" + Empid,
                 //     type: "put",
                 //     contentType: "application/json",
                 //     success: function(result){
@@ -291,14 +296,14 @@
                 //         alert("updated success fully");
                 //     }
                 // });
-                window.location.href = "https://localhost:44389/Employee/EditEmployee/" + Empid;
+                window.location.href = "/Employee/EditEmployee/" + Empid;
             });
             $(document).on("click", ".deleteRow", function () {
                 var Empid = $(this).data("id");
                  var row = $("#row_" + Empid);
                 console.log(row);
                 $.ajax({
-                    url: "https://localhost:44389/api/ApiEmployee/Delete?ids=" + Empid,
+                    url: "/api/ApiEmployee/Delete?ids=" + Empid,
                     type: "put",
                     contentType: "application/json",
                     data : "",
@@ -310,7 +315,7 @@
                         alert("Employee not Deleted");
                     }
                 });
-                //window.location.href = "https://localhost:44389/Employee/EditEmployee/" + Empid;
+                //window.location.href = "/Employee/EditEmployee/" + Empid;
             });
 </script>
 <style type="text/css">
