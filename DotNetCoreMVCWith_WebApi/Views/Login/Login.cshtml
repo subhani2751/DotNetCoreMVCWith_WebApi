@@ -18,6 +18,21 @@
     <a asp-action="Register" asp-controller="Employee" class="btn btn-primary">Go to Register</a>
 </form>
 <script>
+    function addemployee(token){
+            $.ajax({
+            url: '/Employee/AddEmployee',
+            type: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            success: function (data) {
+               $(".containermain").html(data)
+            },
+            error: function (err) {
+                alert('Access denied or not authorized');
+            }
+        });
+    }
     $(document).ready(function (){
         $("#CheckCredentials").validate({
             rules: {
@@ -50,7 +65,8 @@
                         contentType: 'application/json',
                         success: function (response) {
                             localStorage.setItem('jwt',response.token);
-                            window.location.href = "/Employee/AddEmployee";
+                            addemployee(response.token);
+                            //window.location.href = "/Employee/AddEmployee";
                         },
                         error: function (e) {
                             alert('Error ' + e.responseText);

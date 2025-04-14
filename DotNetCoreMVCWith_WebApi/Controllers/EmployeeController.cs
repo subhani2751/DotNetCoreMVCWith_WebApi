@@ -1,10 +1,12 @@
 ﻿using DotNetCoreMVCWith_WebApi.Models;
 using DotNetCoreMVCWith_WebApi.MyDatabaseContext;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotNetCoreMVCWith_WebApi.Controllers
 {
+    
     public class EmployeeController : Controller
     {
         private readonly EmployeeDbContext _employeeDbContext;
@@ -20,11 +22,14 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
         {
             return View("Views/Login/Register.cshtml");
         }
+        [Authorize]
         public async Task<IActionResult> AddEmployee()
         {
            //var Employeeslst= await _employeeDbContext.Employees.ToListAsync();
-            return View();
+            //return View();
+            return PartialView("Views/Employee/AddEmployee.cshtml");
         }
+        [Authorize]
         public async Task<IActionResult> EditEmployee(int id=0)
         {
             var Employees = await _employeeDbContext.Employees.FindAsync(id);

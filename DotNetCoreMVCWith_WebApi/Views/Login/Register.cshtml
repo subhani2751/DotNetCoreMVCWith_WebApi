@@ -26,7 +26,7 @@
     <button type="submit" class="btn btn-success">Register</button>
     <a asp-action="Login" asp-controller="Employee" class="btn btn-primary">Go to Login</a>
 </form>
-<script src="~/scripts/validationformates.js"></script>
+@* <script src="~/scripts/validationformates.js"></script> *@
 <script>
     $(document).ready(function (){
         $("#RegisterCredentials").validate({
@@ -71,13 +71,11 @@
                 let Username=$("#Username").val();
                 let PasswordHash=$("#PasswordHash").val();
                 let Email=$("#Email").val();
-                debugger;
                     $.ajax({
                         url: `/api/ApiEmployee/RegisterCredentials?Username=${Username}&Email=${Email}&PasswordHash=${PasswordHash}`,
                         type: 'Post',
                         contentType: 'application/json',
                         success: function (response) {
-                            debugger;
                             window.location.href = "/Employee/Login";
                         },
                         error: function (e) {

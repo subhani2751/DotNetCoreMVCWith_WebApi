@@ -207,6 +207,8 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
         [HttpGet("getTablePageData")]
         public async Task<IActionResult> getTablePageData(int pagesize =10 ,int pagenumber=1)
         {
+            AdoDataAdapter adoDataAdapter = new AdoDataAdapter(_config);
+            List<Employee> tabledata =adoDataAdapter.Getallemployees().AsEnumerable().Select(r=> new Employee { FirstName =r.Field<string>("FirstName")}).ToList();
             EmployeeApiResponse employeeApiResponse = new EmployeeApiResponse();
             var AllEmployees = _cacheMemory.getcache<Employee>("GetAllEmployees");
             if(AllEmployees != null)

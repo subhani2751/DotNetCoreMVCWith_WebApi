@@ -35,6 +35,7 @@
 
     async function resetInactivityTimerAndRefreshToken() {
         const token = localStorage.getItem('jwt');
+        debugger;
         if (token) {
              let TokenTime= await parseJwtandGetTokenTime();
             TokenTime = (TokenTime * 1000) - new Date().getTime();
@@ -68,8 +69,21 @@ document.addEventListener('click', function (e) {
     }
 });
 $('#Logoutbtn').on('click', logout);
+window.addEventListener('beforeunload', removeJWT);
+window.addEventListener('unload', removeJWT);
 
-    // Attach events to detect user interaction
+//window.addEventListener('unload', () => {
+//    debugger;
+//    localStorage.removeItem('jwt');
+//});
+function removeJWT() {
+    debugger;
+    localStorage.removeItem('jwt');
+}
+
+// Attach events to detect user interaction
+    window.onbeforeunload = removeJWT();
+    window.onunload = removeJWT;
     window.onload = startInactivityTimer;
     //document.onclick = resetInactivityTimerAndRefreshToken;
     //document.onmousemove = resetInactivityTimerAndRefreshToken;

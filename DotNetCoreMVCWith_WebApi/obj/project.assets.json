@@ -59,6 +59,12 @@
           }
         }
       },
+      "BuildBundlerMinifier/3.2.449": {
+        "type": "package",
+        "build": {
+          "build/BuildBundlerMinifier.targets": {}
+        }
+      },
       "ClosedXML/0.104.2": {
         "type": "package",
         "dependencies": {
@@ -4246,6 +4252,34 @@
         "lib/netstandard2.0/BouncyCastle.Cryptography.dll",
         "lib/netstandard2.0/BouncyCastle.Cryptography.xml",
         "packageIcon.png"
+      ]
+    },
+    "BuildBundlerMinifier/3.2.449": {
+      "sha512": "uA9sYDy4VepL3xwzBTLcP2LyuVYMt0ZIT3gaSiXvGoX15Ob+rOP+hGydhevlSVd+rFo+Y+VQFEHDuWU8HBW+XA==",
+      "type": "package",
+      "path": "buildbundlerminifier/3.2.449",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/BuildBundlerMinifier.targets",
+        "buildbundlerminifier.3.2.449.nupkg.sha512",
+        "buildbundlerminifier.nuspec",
+        "tools/net46/BundlerMinifier.dll",
+        "tools/net46/NUglify.dll",
+        "tools/net46/Newtonsoft.Json.dll",
+        "tools/netcoreapp2.0/BundlerMinifier.dll",
+        "tools/netcoreapp2.0/NUglify.dll",
+        "tools/netcoreapp2.0/Newtonsoft.Json.dll",
+        "tools/netcoreapp3.0/BundlerMinifier.dll",
+        "tools/netcoreapp3.0/NUglify.dll",
+        "tools/netcoreapp3.0/Newtonsoft.Json.dll",
+        "tools/netcoreapp3.1/BundlerMinifier.dll",
+        "tools/netcoreapp3.1/NUglify.dll",
+        "tools/netcoreapp3.1/Newtonsoft.Json.dll",
+        "tools/netstandard1.3/BundlerMinifier.dll",
+        "tools/netstandard1.3/NUglify.dll",
+        "tools/netstandard1.3/Newtonsoft.Json.dll"
       ]
     },
     "ClosedXML/0.104.2": {
@@ -11998,6 +12032,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "BuildBundlerMinifier >= 3.2.449",
       "ClosedXML >= 0.104.2",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.7",
       "Microsoft.EntityFrameworkCore >= 7.0.20",
@@ -12012,23 +12047,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\subha\\.nuget\\packages\\": {},
+    "C:\\Users\\subhani\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\subha\\source\\repos\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi.csproj",
       "projectName": "DotNetCoreMVCWith_WebApi",
-      "projectPath": "C:\\Users\\subha\\source\\repos\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi.csproj",
-      "packagesPath": "C:\\Users\\subha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\subha\\source\\repos\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\obj\\",
+      "projectPath": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi.csproj",
+      "packagesPath": "C:\\Users\\subhani\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\subha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\subhani\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -12037,6 +12072,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -12061,6 +12097,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "BuildBundlerMinifier": {
+            "target": "Package",
+            "version": "[3.2.449, )"
+          },
           "ClosedXML": {
             "target": "Package",
             "version": "[0.104.2, )"
