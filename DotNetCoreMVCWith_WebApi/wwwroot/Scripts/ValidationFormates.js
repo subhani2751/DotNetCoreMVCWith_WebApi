@@ -11,6 +11,3 @@ $.validator.addMethod("AlphabelsFormate", function (value, element) {
 }, "Accepts only alphabets and spaces");
 
 
-function Ajaxcall() {
-
-}

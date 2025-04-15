@@ -38,9 +38,13 @@
 		<Delete Files="wwwroot/js/site.js" />
 		<Delete Files="wwwroot/js/site.min.js" />
 	</Target>-->
-	<!--<Target Name="RunBundle" AfterTargets="Build">
+	<Target Name="PreBuildCleanup" BeforeTargets="Build">
+	<WriteLinesToFile File="wwwroot/js/site.js" Lines="" Overwrite="true" />
+	<WriteLinesToFile File="wwwroot/js/site.min.js" Lines="" Overwrite="true" />
+	</Target>
+	<Target Name="RunBundle" AfterTargets="Build">
 		<Exec Command="dotnet bundle" ContinueOnError="true" />
-	</Target>-->
+	</Target>
 	
 
 </Project>

@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿
  let pagesize = 10;
     let pagenumber = 1;
     let totalRecords = 0;
@@ -66,5 +66,3 @@
             }
         });
     }
-    LoadTable();
-});

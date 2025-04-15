@@ -61,10 +61,10 @@
         @await Html.PartialAsync("_Paging")
     </div>
 </div>
-<script src="~/scripts/validationformates.js"></script>
+@* <script src="~/scripts/validationformates.js"></script>
 <script src="~/scripts/export_import.js"></script>
 <script src="~/scripts/pagging.js"></script>
-<script src="~/scripts/JWTToken.js"></script>
+<script src="~/scripts/JWTToken.js"></script> *@
 <script type="text/javascript">
     let actionType = "";
         function showLoader() {
@@ -224,6 +224,7 @@
             }
         });
         //listEmployees();
+          LoadTable();
        
      });
 

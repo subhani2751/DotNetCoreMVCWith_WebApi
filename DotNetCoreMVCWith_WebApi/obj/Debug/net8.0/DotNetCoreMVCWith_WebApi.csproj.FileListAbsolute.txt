@@ -553,3 +553,4 @@ C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\o
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\obj\Debug\net8.0\DotNetCoreMVCWith_WebApi.pdb
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\obj\Debug\net8.0\DotNetCoreMVCWith_WebApi.genruntimeconfig.cache
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\obj\Debug\net8.0\ref\DotNetCoreMVCWith_WebApi.dll
+C:\Users\subha\source\repos\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
