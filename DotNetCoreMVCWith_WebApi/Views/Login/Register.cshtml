@@ -23,12 +23,11 @@
         <input asp-for="ConfirmPassword" class="form-control form-control-sm" style="width:40%" />
     </div>
     
-    <button type="submit" class="btn btn-success">Register</button>
+    <button type="submit" class="btn btn-success" value="Register" id="Register">Register</button>
     <a asp-action="Login" asp-controller="Employee" class="btn btn-primary">Go to Login</a>
 </form>
 @* <script src="~/scripts/validationformates.js"></script> *@
 <script>
-    $(document).ready(function (){
         $("#RegisterCredentials").validate({
             rules: {
                 Email: {
@@ -85,5 +84,4 @@
 
             }
         });
-    });
 </script>

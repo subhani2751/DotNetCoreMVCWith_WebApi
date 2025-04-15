@@ -9,7 +9,8 @@
       "wwwroot/Scripts/ValidationFormates.js",
       "wwwroot/Scripts/JWTToken.js",
       "wwwroot/Scripts/Export_Import.js",
-      "wwwroot/Scripts/Pagging.js"
+      "wwwroot/Scripts/Pagging.js",
+      "wwwroot/Scripts/CommonJS.js"
     ],
     "minify": {
       "enabled": true,

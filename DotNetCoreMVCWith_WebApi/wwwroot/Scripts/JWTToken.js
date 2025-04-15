@@ -1,5 +1,4 @@
 ﻿    function logout() {
-    debugger;
         localStorage.removeItem("jwt"); // Or sessionStorage.removeItem("jwt")
         $.ajax({
             url: '/Employee/Login?partialviewneed=1',

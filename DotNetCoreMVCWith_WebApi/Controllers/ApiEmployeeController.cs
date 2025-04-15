@@ -74,6 +74,7 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
             employee.LastModifiedDate = DateTime.Now;
             _employeeDbContext.Update(employee);
             var _Employees = await _employeeDbContext.SaveChangesAsync();
+            _cacheMemory.Removecache("GetAllEmployees");
             return Ok(new { Message = "Employee Details modified successfully" });
         }
         [HttpPut("Delete")]

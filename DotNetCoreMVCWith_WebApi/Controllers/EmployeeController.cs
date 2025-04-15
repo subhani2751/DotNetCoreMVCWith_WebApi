@@ -37,7 +37,8 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
         public async Task<IActionResult> EditEmployee(int id=0)
         {
             var Employees = await _employeeDbContext.Employees.FindAsync(id);
-            return View(Employees);
+            //return View(Employees);
+            return PartialView("Views/Employee/EditEmployee.cshtml", Employees);
         }
     }
 }

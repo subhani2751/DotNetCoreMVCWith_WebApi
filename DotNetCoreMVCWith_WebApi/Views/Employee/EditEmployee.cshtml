@@ -4,27 +4,27 @@
     ViewData["Title"] = "EditEmployee";
 }
 <div class="container p-4 bg-light rounded shadow mb-5">
-    <form id="EditEmployee">
+    <form id="EditEmployee" action="/" >
         <h3>Edit Employee</h3>
         @await Html.PartialAsync("_FormFields")
-        <button type="submit" value="Update" class="btn btn-primary">Update</button>
-        <button type="submit" value="Cancel" class="btn btn-secondary">Cancel</button>
+        <button type="submit" value="Update" class="btn btn-primary" id="Update">Update</button>
+        <button type="submit" value="Cancel" class="btn btn-secondary" id="Cancel">Cancel</button>
     </form>
 </div>
 
-<script src="~/scripts/validationformates.js"></script>
+@* <script src="~/scripts/validationformates.js"></script> *@
 
 <script type="text/javascript">
-    let Actiontype = '';
     try {
+         var EditActiontype = '';
         function clearForm() {
-            $("#EditEmployee input").val(""); // Clear all visible input fields
-            $("#EditEmployee input[type='date']").val(""); // Ensure date fields are cleared
+            $("#EditEmployee input").val(""); //Clear all visible input fields
+            $("#EditEmployee input[type='date']").val(""); //Ensure date fields are cleared
         }
         $("button[type=submit]").click(function () {
             /*event.preventDefault();  */
-            Actiontype = $(this).val();
-            // if (Actiontype == "Cancel") {
+            EditActiontype = $(this).val();
+            // if (EditActiontype == "Cancel") {
             //     debugger;
             //     //$("#EditEmployee")[0].reset();
             //     clearForm();
@@ -90,8 +90,8 @@
                     error.insertAfter(element);
                     error.css("color", "red");
                 },
-                submitHandler: function (form) {
-                    if (Actiontype === "Update") {
+                submitHandler: function(form) {
+                    if (EditActiontype === "Update") {
                         var _CreatedDate = $("#CreatedDate").val() == '' ? null : $("#CreatedDate").val();
                         var Formdata = {
                             EmployeeId: $("#EmployeeId").val(),
@@ -109,17 +109,21 @@
                             contentType: 'application/json',
                             data: JSON.stringify(Formdata),
                             success: function (response) {
-                                clearForm();
-                                window.location.href = "/Employee/AddEmployee";
+                                //clearForm();
+                                  Ajaxcallcommon('/Employee/AddEmployee','Get');
+                                  LoadTable();
+                               // window.location.href = "/Employee/AddEmployee";
                             },
                             error: function (e) {
                                 alert('Error ' + e.responseText);
                             }
                         });
                     }
-                    else if (Actiontype == "Cancel") {
+                    else if (EditActiontype == "Cancel") {
                         clearForm();
-                         window.location.href = "/Employee/AddEmployee";
+                         Ajaxcallcommon('/Employee/AddEmployee','Get');
+                          LoadTable();
+                         //window.location.href = "/Employee/AddEmployee";
                         //$("#EditEmployee")[0].reset();
                         /*form.reset();*/
                     }
@@ -127,6 +131,7 @@
             });
         });
     } catch (er) {
+        debugger;
         console.log(er)
     }
 </script>

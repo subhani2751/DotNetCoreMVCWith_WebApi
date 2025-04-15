@@ -66,8 +66,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>v5aipnp79r</Fingerprint>
-      <Integrity>DTdc2YkxKFDTi06rBRnTPpvLT64kHxL7Qz82HH2tpW0=</Integrity>
+      <Fingerprint>4vrswwgucs</Fingerprint>
+      <Integrity>8GNKtV2dXVfdfSJo2FFYw6hDDXF6c7XRYe8bxChK5D0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</OriginalItemSpec>
@@ -84,8 +84,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>19j5zwduc6</Fingerprint>
-      <Integrity>SzwD3Zmb7rSUdoiVX1eElQJTS9SUWjPohjQVTREQEZY=</Integrity>
+      <Fingerprint>ztq9ndu2t8</Fingerprint>
+      <Integrity>6eQTS+bZyyGE39SxATCo6t0pb/kYTJqlTdeu9iArsyg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.min.js'))</OriginalItemSpec>
@@ -1116,6 +1116,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\jquery\LICENSE.txt'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Scripts\CommonJS.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DotNetCoreMVCWith_WebApi</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DotNetCoreMVCWith_WebApi</BasePath>
+      <RelativePath>Scripts/CommonJS.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>3tnwi4eqcn</Fingerprint>
+      <Integrity>h4Ic66vS7jdYgWrSvnoGXty/csTA0O0XE0ArFo3NjG0=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Scripts\CommonJS.js'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Scripts\Export_Import.js'))">
       <SourceType>Package</SourceType>
       <SourceId>DotNetCoreMVCWith_WebApi</SourceId>
@@ -1164,8 +1182,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>8y4de5tofv</Fingerprint>
-      <Integrity>UCwL80ggXDNwfEVwTwc7zZtY+ZB3wrzmZKwRMA2UNgY=</Integrity>
+      <Fingerprint>04w6c0uhi7</Fingerprint>
+      <Integrity>EJTMeQzJ6spNqtkLtRbanaJedVfsP+giO/xacqeemP8=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Scripts\Pagging.js'))</OriginalItemSpec>

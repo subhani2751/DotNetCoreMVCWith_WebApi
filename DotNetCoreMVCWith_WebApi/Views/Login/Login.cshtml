@@ -13,7 +13,7 @@
         <input asp-for="PasswordHash" class="form-control form-control-sm" style="width:40%" />
     </div>
 
-    <button type="submit" class="btn btn-success">Login</button>
+    <button type="submit" class="btn btn-success" value="Login" id="Login">Login</button>
     <a asp-action="Register" asp-controller="Employee" class="btn btn-primary">Go to Register</a>
 </form>
 <script>
@@ -64,7 +64,8 @@
                         contentType: 'application/json',
                         success: function (response) {
                             localStorage.setItem('jwt',response.token);
-                            addemployee(response.token);
+                             Ajaxcallcommon('/Employee/AddEmployee','Get');
+                            //addemployee(response.token);
                             //window.location.href = "/Employee/AddEmployee";
                         },
                         error: function (e) {

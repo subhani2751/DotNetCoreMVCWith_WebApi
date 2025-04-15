@@ -66,7 +66,8 @@
 <script src="~/scripts/pagging.js"></script>
 <script src="~/scripts/JWTToken.js"></script> *@
 <script type="text/javascript">
-    let actionType = "";
+     try {
+    var actionType1 = "";
         function showLoader() {
         $("#loader-overlay").fadeIn(); // Smoothly show loader
     }
@@ -80,7 +81,7 @@
     //console.log("jQuery Loaded:", !!window.jQuery);
     //console.log("Validation Loaded:", typeof $.fn.validate !== "undefined");
     $("button[type=submit]").click(function () {
-        actionType = $(this).val(); // Get button value (save or cancel)
+        actionType1 = $(this).val(); // Get button value (save or cancel)
         //if(actionType=="Cancel"){
             
         //}
@@ -132,7 +133,6 @@
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
         });
     });
-    $(document).ready(function () {
         $("#AddEmployeeForm").validate({
             rules: {
                 FirstName: {
@@ -194,7 +194,7 @@
             },
             submitHandler: function (form) 
               {
-                if (actionType === "Save") {
+                if (actionType1 === "Save") {
                     var Formdata = {
                         FirstName: $("#FirstName").val(),
                         LastName: $("#LastName").val(),
@@ -218,7 +218,7 @@
                         }
                     });
                 }
-                else if (actionType == "Cancel") {
+                else if (actionType1 == "Cancel") {
                     form.reset();
                 }
             }
@@ -226,7 +226,6 @@
         //listEmployees();
           LoadTable();
        
-     });
 
     function listEmployees(Formdata) {
         showLoader();
@@ -285,19 +284,23 @@
      };
           $(document).on("click", ".Edit", function () {
                 var Empid = $(this).data("id");
+                 //const token = localStorage.getItem('jwt');
+                 Ajaxcallcommon(`/Employee/EditEmployee?id=${Empid}`,'Get');
                 // var row = $("#row_" + Empid);
                 // $.ajax({
                 //     url: "/Employee/EditEmployee?id=" + Empid,
-                //     type: "put",
+                //     type: "get",
+                //     headers: { 'Authorization': `Bearer ${token}`},
                 //     contentType: "application/json",
                 //     success: function(result){
-                //         alert("updated success fully");
+                //         // $(".containermain").html('')
+                //         $(".containermain").html(result);
                 //     },
                 //     error: function (Er) {
                 //         alert("updated success fully");
                 //     }
                 // });
-                window.location.href = "/Employee/EditEmployee/" + Empid;
+                //window.location.href = "/Employee/EditEmployee/" + Empid;
             });
             $(document).on("click", ".deleteRow", function () {
                 var Empid = $(this).data("id");
@@ -318,6 +321,10 @@
                 });
                 //window.location.href = "/Employee/EditEmployee/" + Empid;
             });
+            } catch (er) {
+        debugger;
+        console.log(er)
+    }
 </script>
 <style type="text/css">
     .container {
