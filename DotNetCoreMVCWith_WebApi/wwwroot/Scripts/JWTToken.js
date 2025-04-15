@@ -1,8 +1,8 @@
-﻿function logout() {
+﻿    function logout() {
     debugger;
         localStorage.removeItem("jwt"); // Or sessionStorage.removeItem("jwt")
         $.ajax({
-            url: '/Employee/Login',
+            url: '/Employee/Login?partialviewneed=1',
             type: 'GET',
             success: function (data) {
                 $(".containermain").html(data);
@@ -13,8 +13,7 @@
         });
        // window.location.href = "/Employee/Login";
         //alert("Session expired due to inactivity.");
-    }
-
+}
 
     async function parseJwtandGetTokenTime() {
         const token = await localStorage.getItem('jwt');
@@ -78,7 +77,7 @@
             resetInactivityTimerAndRefreshToken();
         }
     });
-    $('#Logoutbtn').on('click', logout);
+    $(document).on('click', '#Logoutbtn', logout);
     //window.addEventListener('beforeunload', removeJWT);
     //window.addEventListener('unload', removeJWT);
 

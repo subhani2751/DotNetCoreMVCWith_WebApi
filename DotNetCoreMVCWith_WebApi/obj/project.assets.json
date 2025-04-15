@@ -12047,23 +12047,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\subha\\.nuget\\packages\\": {},
+    "C:\\Users\\subhani\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\subha\\source\\repos\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi.csproj",
       "projectName": "DotNetCoreMVCWith_WebApi",
-      "projectPath": "C:\\Users\\subha\\source\\repos\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi.csproj",
-      "packagesPath": "C:\\Users\\subha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\subha\\source\\repos\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\obj\\",
+      "projectPath": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi.csproj",
+      "packagesPath": "C:\\Users\\subhani\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\subha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\subhani\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -12072,6 +12072,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

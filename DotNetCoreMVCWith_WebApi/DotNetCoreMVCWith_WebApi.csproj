@@ -34,14 +34,14 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
 	<PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
   </ItemGroup>
-	<!--<Target Name="PreBuildCleanup" BeforeTargets="Build">
+	<Target Name="PreBuildCleanup" BeforeTargets="Build">
 		<Delete Files="wwwroot/js/site.js" />
 		<Delete Files="wwwroot/js/site.min.js" />
-	</Target>-->
-	<Target Name="PreBuildCleanup" BeforeTargets="Build">
+	</Target>
+	<!--<Target Name="PreBuildCleanup" BeforeTargets="Build">
 	<WriteLinesToFile File="wwwroot/js/site.js" Lines="" Overwrite="true" />
 	<WriteLinesToFile File="wwwroot/js/site.min.js" Lines="" Overwrite="true" />
-	</Target>
+	</Target>-->
 	<Target Name="RunBundle" AfterTargets="Build">
 		<Exec Command="dotnet bundle" ContinueOnError="true" />
 	</Target>

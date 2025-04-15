@@ -14,9 +14,13 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
         {
             _employeeDbContext = employeeDbContext;
         }
-        public async Task<IActionResult> Login()
+        public async Task<IActionResult> Login(int partialviewneed=0)
         {
-            return View("Views/Login/Login.cshtml");
+            if (partialviewneed == 0)
+            {
+                return View("Views/Login/Login.cshtml");
+            }
+            return PartialView("Views/Login/Login.cshtml");
         }
         public async Task<IActionResult> Register()
         {

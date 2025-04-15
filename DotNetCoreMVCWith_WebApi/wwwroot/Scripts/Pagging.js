@@ -3,18 +3,18 @@
     let pagenumber = 1;
     let totalRecords = 0;
     let totalPages = 1;
-    $("#pageSize").change(function () {
+    $(document).on('change', '#pageSize', function () {
         pagenumber = 1;
         pagesize = $(this).val();
         LoadTable();
     });
 
-    $(".prevPage").click(function () {
+    $(document).on('click','.prevPage',function () {
         pagenumber--;
         LoadTable();
     });
 
-    $(".nextPage").click(function () {
+    $(document).on('click','.nextPage',function () {
         pagenumber++;
         LoadTable();
     });

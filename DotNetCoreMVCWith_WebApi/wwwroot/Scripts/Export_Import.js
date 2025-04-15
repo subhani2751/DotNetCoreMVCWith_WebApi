@@ -1,7 +1,8 @@
-﻿$("#importExcel").click(function () {
-    $("#excelFile").click();
+﻿$(document).on('click','#importExcel',function () {
+    // $("#excelFile").click();
+    $('#excelFile').trigger('click');
 });
-$("#excelFile").change(function () {
+$(document).on('change','#excelFile',function () {
     var file = this.files[0];
     if (file) {
         var formData = new FormData();

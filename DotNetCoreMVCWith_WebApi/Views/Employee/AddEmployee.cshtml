@@ -97,7 +97,7 @@
             $('#selectAll').prop('checked', true);
         }
     });
-    $("#deleteSelected").click(function () {
+    $(document).on('click','#deleteSelected',function () {
         var selected = $(".rowCheckbox:checked");
         if (selected.length === 0) {
             alert("Please select at least one employee to delete.");

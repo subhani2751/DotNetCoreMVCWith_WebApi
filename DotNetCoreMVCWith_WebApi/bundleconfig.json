@@ -1,14 +1,18 @@
 [
   {
-    "outputFileName": "wwwroot/js/newfilecheck.js",
+    "outputFileName": "wwwroot/js/site.js",
     "inputFiles": [
+      //"wwwroot/lib/jquery/dist/jquery.min.js",
+      //"wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      //"wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      //"wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "wwwroot/Scripts/ValidationFormates.js",
-      "wwwroot/Scripts/JWTToken.js", 
+      "wwwroot/Scripts/JWTToken.js",
       "wwwroot/Scripts/Export_Import.js",
       "wwwroot/Scripts/Pagging.js"
     ],
     "minify": {
-      "enabled": false,
+      "enabled": true,
       "renameLocals": true
     },
     "includeInProject": true
