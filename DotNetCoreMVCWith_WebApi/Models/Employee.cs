@@ -27,6 +27,9 @@ public partial class Employee
     public string? smessage { get; set; }
     [NotMapped]
     public int RecordCount { get; set; }
+
+    [NotMapped]
+    public List<IFormFile> Files { get; set; } = new();
 }
 
 public class EmployeeApiResponse

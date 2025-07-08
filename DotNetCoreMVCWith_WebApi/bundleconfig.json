@@ -17,5 +17,17 @@
       "renameLocals": true
     },
     "includeInProject": true
+  },
+
+  {
+    "outputFileName": "wwwroot/css/site.css",
+    "inputFiles": [
+      "wwwroot/Style/Fontawesome_CSS/all.min.css" // or update path if you move it
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "includeInProject": true
   }
 ]

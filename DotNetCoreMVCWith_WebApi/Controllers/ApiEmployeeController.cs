@@ -34,7 +34,7 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
             _config = config;
         }
         [HttpPost]
-        public async Task<IActionResult> post([FromBody] Employee employee)
+        public async Task<IActionResult> post([FromForm]  Employee employee)//[FromBody]
         {
             if (employee == null)
             {

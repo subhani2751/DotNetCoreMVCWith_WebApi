@@ -25,8 +25,116 @@
       "PackagePath": "staticwebassets\\Scripts\\ValidationFormates.js"
     },
     {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\all.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\all.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\all.min.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\all.min.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\brands.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\brands.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\brands.min.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\brands.min.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\fontawesome.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\fontawesome.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\fontawesome.min.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\fontawesome.min.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\regular.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\regular.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\regular.min.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\regular.min.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\solid.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\solid.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\solid.min.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\solid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\svg-with-js.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\svg-with-js.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\svg-with-js.min.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\svg-with-js.min.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\v4-font-face.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\v4-font-face.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\v4-font-face.min.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\v4-font-face.min.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\v4-shims.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\v4-shims.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\v4-shims.min.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\v4-shims.min.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\v5-font-face.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\v5-font-face.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\Fontawesome_CSS\\v5-font-face.min.css",
+      "PackagePath": "staticwebassets\\Style\\Fontawesome_CSS\\v5-font-face.min.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\webfonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\Style\\webfonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\webfonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\Style\\webfonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\webfonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\Style\\webfonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\webfonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\Style\\webfonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\webfonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\Style\\webfonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\webfonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\Style\\webfonts\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\webfonts\\fa-v4compatibility.ttf",
+      "PackagePath": "staticwebassets\\Style\\webfonts\\fa-v4compatibility.ttf"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\Style\\webfonts\\fa-v4compatibility.woff2",
+      "PackagePath": "staticwebassets\\Style\\webfonts\\fa-v4compatibility.woff2"
+    },
+    {
       "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\css\\site.min.css",
+      "PackagePath": "staticwebassets\\css\\site.min.css"
     },
     {
       "Id": "C:\\Users\\subhani\\Desktop\\MVC\\DotNetCoreMVCWith_WebApi\\DotNetCoreMVCWith_WebApi\\wwwroot\\favicon.ico",

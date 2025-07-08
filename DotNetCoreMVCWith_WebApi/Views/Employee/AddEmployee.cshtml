@@ -11,6 +11,10 @@
     <form id="AddEmployeeForm">
         <h2>Employee Registration form</h2>
             @await Html.PartialAsync("_FormFields")
+            <label for="File">Upload Attachments (Multiple)</label> 
+            <input type="file" id="Files" multiple  />
+            <div id="selectedFilesList" style="margin-top: 10px;"></div>
+
             <button type="submit" value="Save" class="btn btn-primary">Save</button>
         <button type="submit" value="Cancel" class="btn btn-secondary">Cancel</button>
 
@@ -194,20 +198,35 @@
             },
             submitHandler: function (form) 
               {
+                  debugger;
                 if (actionType1 === "Save") {
-                    var Formdata = {
-                        FirstName: $("#FirstName").val(),
-                        LastName: $("#LastName").val(),
-                        Email: $("#Email").val(),
-                        Department: $("#Department").val(),
-                        HireDate: $("#HireDate").val(),
-                        Salary: $("#Salary").val(),
-                    };
+                    // var Formdata = {
+                    //     FirstName: $("#FirstName").val(),
+                    //     LastName: $("#LastName").val(),
+                    //     Email: $("#Email").val(),
+                    //     Department: $("#Department").val(),
+                    //     HireDate: $("#HireDate").val(),
+                    //     Salary: $("#Salary").val(),
+                    //     Files :  $("#Files")[0].files,
+                    // };
+
+                    const formData = new FormData();
+                    formData.append("FirstName", $("#FirstName").val());
+                    formData.append("LastName", $("#LastName").val());
+                    formData.append("Email", $("#Email").val());
+                    formData.append("Department", $("#Department").val());
+                    formData.append("HireDate", $("#HireDate").val());
+                    formData.append("Salary", $("#Salary").val());
+                    //var files = $("#Files")[0].files;
+                    for (var i = 0; i < selectedFiles.length; i++) {
+                        formData.append("Files", selectedFiles[i]); // same name as in model
+                    }
                     $.ajax({
                         url: '/api/ApiEmployee',
                         type: 'post',
-                        contentType: 'application/json',
-                        data: JSON.stringify(Formdata),
+                        processData: false,      // ✅ must be false
+                        contentType: false, //contentType: 'application/json',
+                        data: formData, //JSON.stringify(Formdata),
                         success: function (response) {
                             form.reset();
                             listEmployees(response);
@@ -325,8 +344,59 @@
         debugger;
         console.log(er)
     }
+
+    // file attachment functionalty
+    let selectedFiles = [];
+
+    $("#Files").on("change", function () {
+        const newFiles = Array.from(this.files);
+
+        newFiles.forEach(file => {
+            if (!selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
+                selectedFiles.push(file);
+            }
+        });
+
+        renderFileList();
+        this.value = ""; // allow reselecting same file
+    });
+
+       function renderFileList() {
+        const fileListDiv = $("#selectedFilesList");
+        fileListDiv.empty();
+
+        selectedFiles.forEach((file, index) => {
+            const fileItem = $(`
+                <div class="file-item d-flex">
+                    <div class="file-info d-flex align-items-center gap-2">
+                        <i class="fas fa-paperclip text-secondary"></i>
+                        <span>${file.name}</span>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-link text-danger" onclick="removeFile(${index})">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `);
+            fileListDiv.append(fileItem);
+        });
+    }
+
+    function removeFile(index) {
+        selectedFiles.splice(index, 1);
+        renderFileList();
+    }
 </script>
+
 <style type="text/css">
+
+    .file-item {
+        transition: all 0.2s ease-in-out;
+    }
+
+    .file-item:hover {
+        background-color: #f8f9fa;
+    }
+
     .container {
         max-width: 1200px;
     }

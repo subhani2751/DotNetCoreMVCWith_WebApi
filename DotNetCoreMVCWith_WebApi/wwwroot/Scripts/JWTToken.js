@@ -85,7 +85,6 @@
     //    localStorage.removeItem('jwt');
     //});
     function removeJWT() {
-        debugger;
         localStorage.removeItem('jwt');
     }
 

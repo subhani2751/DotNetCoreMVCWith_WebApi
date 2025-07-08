@@ -13,7 +13,6 @@ $.validator.addMethod("AlphabelsFormate", function (value, element) {
 
 
     function logout() {
-    debugger;
         localStorage.removeItem("jwt"); // Or sessionStorage.removeItem("jwt")
         $.ajax({
             url: '/Employee/Login?partialviewneed=1',
@@ -100,7 +99,6 @@ $.validator.addMethod("AlphabelsFormate", function (value, element) {
     //    localStorage.removeItem('jwt');
     //});
     function removeJWT() {
-        debugger;
         localStorage.removeItem('jwt');
     }
 
