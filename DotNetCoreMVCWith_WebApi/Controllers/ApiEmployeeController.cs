@@ -14,6 +14,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.AspNetCore.Identity;
 using System.Drawing;
 using System.Security.Claims;
+using Azure;
 
 namespace DotNetCoreMVCWith_WebApi.Controllers
 {
@@ -36,6 +37,7 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> post([FromForm]  Employee employee)//[FromBody]
         {
+           
             if (employee == null)
             {
                 return BadRequest("Data not recived");
@@ -251,6 +253,19 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
                 return Unauthorized("Email not confirmed.");
 
             var token = tokenJWT.GenerateJwtToken(user); // 👇 defined below
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,               // Prevents access from JavaScript (protects from XSS)
+                Secure = true,                 // Send only over HTTPS
+                SameSite = SameSiteMode.Strict,// Protects from CSRF (or use Lax/None if cross-site)
+                Expires = DateTime.UtcNow.AddHours(05)
+            };
+            Response.Cookies.Append("jwtToken", token, cookieOptions);
+            //Response.Cookies.Delete(jwtToken)
+
+            //HttpContext.Session.SetString("Token", token);
+            //HttpContext.Session.SetString("Token2", token);
+            //HttpContext.Session.SetString("Token3", token);
 
             return Ok(new
             {

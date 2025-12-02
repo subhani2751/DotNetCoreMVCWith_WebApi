@@ -3,6 +3,7 @@ using DotNetCoreMVCWith_WebApi.MyDatabaseContext;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Common;
 
 namespace DotNetCoreMVCWith_WebApi.Controllers
 {
@@ -16,6 +17,10 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
         }
         public async Task<IActionResult> Login(int partialviewneed=0)
         {
+            TempData["hello"] = "hello";
+            //TempData["Kolo"] = "kolo";
+            ViewBag.hello = "hello viewbag";
+            ViewData["helloViewdata"] = "helloViewdata";
             if (partialviewneed == 0)
             {
                 return View("Views/Login/Login.cshtml");
@@ -29,6 +34,7 @@ namespace DotNetCoreMVCWith_WebApi.Controllers
         [Authorize]
         public async Task<IActionResult> AddEmployee()
         {
+            string a = TempData["hello"].ToString();
            //var Employeeslst= await _employeeDbContext.Employees.ToListAsync();
             //return View();
             return PartialView("Views/Employee/AddEmployee.cshtml");

@@ -19,6 +19,14 @@ builder.Services.AddControllersWithViews().AddViewOptions(options => {
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<CacheMemory>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(2);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters
@@ -49,7 +57,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-//app.UseSession();
+app.UseSession();
+//app.Use();
 
 app.UseAuthentication();
 app.UseAuthorization();

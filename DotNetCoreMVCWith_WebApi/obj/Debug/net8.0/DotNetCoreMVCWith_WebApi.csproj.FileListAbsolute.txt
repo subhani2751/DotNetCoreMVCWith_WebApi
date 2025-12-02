@@ -295,6 +295,7 @@ C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\b
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\ExcelNumberFormat.dll
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\Humanizer.dll
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\itextsharp.dll
+C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\JM.LinqFaster.dll
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -338,6 +339,8 @@ C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\b
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\Mono.TextTemplating.dll
+C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\NetFabric.Hyperlinq.dll
+C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\NetFabric.Hyperlinq.Abstractions.dll
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\NuGet.Common.dll
 C:\Users\subhani\Desktop\MVC\DotNetCoreMVCWith_WebApi\DotNetCoreMVCWith_WebApi\bin\Debug\net8.0\NuGet.Configuration.dll
